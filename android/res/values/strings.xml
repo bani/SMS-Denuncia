@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, Denuncia!</string>
     <string name="app_name">SMS-Denúncia</string>
     <string name="denuncia">Selecione o tipo de denúncia:</string>
     <string name="local">Informe o local:</string>
@@ -11,5 +10,56 @@
         <item>Amarela</item>
         <item>Lilás</item>
     </string-array>
-    
+    <string-array name="linhas_trem">
+        <item>Rubi</item>
+        <item>Diamante</item>
+        <item>Esmeralda</item>
+        <item>Turquesa</item>
+        <item>Coral</item>
+        <item>Safira</item>
+    </string-array>
+    <string-array name="linha1">
+        <item>Jabaquara</item>
+        <item>Tucuruvi</item>
+    </string-array>
+    <string-array name="linha2">
+        <item>Vila Prudente</item>
+        <item>Vila Madalena</item>
+    </string-array>
+    <string-array name="linha3">
+        <item>Corinthians-Itaquera</item>
+        <item>Palmeiras-Barra Funda</item>
+    </string-array>
+    <string-array name="linha4">
+        <item>Faria Lima</item>
+        <item>Paulista</item>
+    </string-array>
+    <string-array name="linha5">
+        <item>Capão Redondo</item>
+        <item>Largo Treze</item>
+    </string-array>
+    <string-array name="linha7">
+        <item>Luz</item>
+        <item>Jundiaí</item>
+    </string-array>
+    <string-array name="linha8">
+    	<item>Júlio Prestes</item>
+        <item>Itapevi</item>
+    </string-array>
+    <string-array name="linha9">
+        <item>Osasco</item>
+        <item>Grajaú</item>
+    </string-array>
+    <string-array name="linha10">
+    	<item>Luz</item>
+        <item>Rio Grande da Serra</item>
+    </string-array>
+    <string-array name="linha11">
+        <item>Luz</item>
+        <item>Estudantes</item>
+    </string-array>
+    <string-array name="linha12">
+        <item>Brás</item>
+        <item>Calmon Viana</item>
+    </string-array>
 </resources>

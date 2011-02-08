@@ -17,7 +17,6 @@
 <Button android:id="@+id/meioTransporte1"
             android:layout_width="100px"
             android:layout_height="wrap_content"
-            android:layout_margin="10px"
             android:text="Trem/Metrô" />
 <TextView android:id="@+id/meioTransporte2"
     android:layout_width="fill_parent" 
@@ -29,10 +28,21 @@
 <Button android:id="@+id/linha1"
             android:layout_width="100px"
             android:layout_height="wrap_content"
-            android:layout_margin="10px"
             android:text="Linha"
             android:visibility="invisible" />
 <TextView android:id="@+id/linha2"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text=""
+    />
+</TableRow>
+<TableRow>
+<Button android:id="@+id/estacao1"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:text="Estação"
+            android:visibility="invisible" />
+<TextView android:id="@+id/estacao2"
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content" 
     android:text=""
