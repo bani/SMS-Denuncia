@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class Denuncia extends Activity {
@@ -20,6 +21,7 @@ public class Denuncia extends Activity {
 	private TextView estacao;
 	private CheckBox dentro;
 	private TextView sentido;
+	private EditText vagao;
 	
 	static {
 		LINHAS.put("Azul", R.array.linha1);
@@ -75,6 +77,7 @@ public class Denuncia extends Activity {
 		estacao = (TextView) findViewById(R.id.estacao2);
 		dentro = (CheckBox) findViewById(R.id.dentro2);
 		sentido = (TextView) findViewById(R.id.sentido2);
+		vagao = (EditText) findViewById(R.id.vagao2);
 
 		showMeioTransporte();
 	}
@@ -155,10 +158,13 @@ public class Denuncia extends Activity {
 				if (dentro.isChecked()) {
 		             estacao1.setText("Próx. Estação");
 		             showSentido();
+		             showVagao();
 		         } else {
 		        	 estacao1.setText("Estação");
 		        	 hideSentido();
+		        	 hideVagao();
 		         }
+				estacao1.requestFocus();
 			}
 		});
 	}
@@ -179,8 +185,10 @@ public class Denuncia extends Activity {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Estação");
 		builder.setItems(items, new DialogInterface.OnClickListener() {
+			final Button continuar = (Button) findViewById(R.id.continuar);
 			public void onClick(DialogInterface dialog, int item) {
 				estacao.setText(items[item]);
+				continuar.setVisibility(View.VISIBLE);
 			}
 		});
 		AlertDialog alert = builder.create();
@@ -215,5 +223,17 @@ public class Denuncia extends Activity {
 		});
 		AlertDialog alert = builder.create();
 		alert.show();
+	}
+	
+	private void showVagao() {
+		final TextView vagao = (TextView) findViewById(R.id.vagao1);
+		vagao.setVisibility(View.VISIBLE);
+		this.vagao.setVisibility(View.VISIBLE);
+	}
+	
+	private void hideVagao() {
+		final TextView vagao = (TextView) findViewById(R.id.vagao1);
+		vagao.setVisibility(View.INVISIBLE);
+		this.vagao.setVisibility(View.INVISIBLE);
 	}
 }

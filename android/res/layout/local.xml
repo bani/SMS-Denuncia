@@ -11,11 +11,11 @@
     />
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="wrap_content"
     android:stretchColumns="1">
 <TableRow>
 <Button android:id="@+id/meioTransporte1"
-            android:layout_width="100px"
+            android:layout_width="120px"
             android:layout_height="wrap_content"
             android:text="Trem/Metrô" />
 <TextView android:id="@+id/meioTransporte2"
@@ -26,7 +26,7 @@
 </TableRow>
 <TableRow>
 <Button android:id="@+id/linha1"
-            android:layout_width="100px"
+            android:layout_width="120px"
             android:layout_height="wrap_content"
             android:text="Linha"
             android:visibility="invisible" />
@@ -49,7 +49,7 @@
 </TableRow>
 <TableRow>
 <Button android:id="@+id/estacao1"
-            android:layout_width="100px"
+            android:layout_width="120px"
             android:layout_height="wrap_content"
             android:text="Estação"
             android:visibility="invisible" />
@@ -61,7 +61,7 @@
 </TableRow>
 <TableRow>
 <Button android:id="@+id/sentido1"
-            android:layout_width="100px"
+            android:layout_width="120px"
             android:layout_height="wrap_content"
             android:text="Sentido"
             android:visibility="invisible" />
@@ -71,5 +71,26 @@
     android:text=""
     />
 </TableRow>
+<TableRow>
+<TextView android:id="@+id/vagao1"
+            android:layout_width="120px"
+            android:layout_height="wrap_content"
+            android:text="Num. do vagão"
+            android:visibility="invisible" />
+<EditText android:id="@+id/vagao2"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:numeric="decimal"
+    android:maxLength="8"
+    android:text=""
+    android:visibility="invisible" />
+</TableRow>
 </TableLayout>
+<Button android:id="@+id/continuar"
+            android:layout_marginLeft="120px"
+            android:layout_marginTop="25px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Continuar"
+            android:visibility="invisible" />
 </LinearLayout>
