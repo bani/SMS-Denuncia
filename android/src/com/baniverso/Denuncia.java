@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 public class Denuncia extends Activity {
@@ -17,6 +18,8 @@ public class Denuncia extends Activity {
 	private TextView meioTransporte;
 	private TextView linha;
 	private TextView estacao;
+	private CheckBox dentro;
+	private TextView sentido;
 	
 	static {
 		LINHAS.put("Azul", R.array.linha1);
@@ -69,6 +72,9 @@ public class Denuncia extends Activity {
 		meioTransporte = (TextView) findViewById(R.id.meioTransporte2);
 		linha = (TextView) findViewById(R.id.linha2);
 		estacao = (TextView) findViewById(R.id.estacao2);
+		estacao = (TextView) findViewById(R.id.estacao2);
+		dentro = (CheckBox) findViewById(R.id.dentro2);
+		sentido = (TextView) findViewById(R.id.sentido2);
 
 		showMeioTransporte();
 	}
@@ -81,7 +87,7 @@ public class Denuncia extends Activity {
 			linha.setText("");
 		case 2:
 			estacao.setText("");
-		case 3:
+			sentido.setText("");
 		}
 
 	}
@@ -130,12 +136,31 @@ public class Denuncia extends Activity {
 		builder.setItems(items, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int item) {
 				linha.setText(items[item]);
+				showDentro();
 				showEstacao();
 				limpaLocal(2);
 			}
 		});
 		AlertDialog alert = builder.create();
 		alert.show();
+	}
+	
+	private void showDentro() {
+		dentro.setVisibility(View.VISIBLE);
+		final TextView dentro1 = (TextView) findViewById(R.id.dentro1);
+		dentro1.setVisibility(View.VISIBLE);
+		dentro.setOnClickListener(new View.OnClickListener() {
+			final Button estacao1 = (Button) findViewById(R.id.estacao1);
+			public void onClick(View v) {
+				if (dentro.isChecked()) {
+		             estacao1.setText("Próx. Estação");
+		             showSentido();
+		         } else {
+		        	 estacao1.setText("Estação");
+		        	 hideSentido();
+		         }
+			}
+		});
 	}
 
 	private void showEstacao() {
@@ -152,17 +177,43 @@ public class Denuncia extends Activity {
 		String linha = this.linha.getText().toString();
 		final CharSequence[] items = getResources().getStringArray(LINHAS.get(linha));
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Linha do " + meioTransporte.getText());
+		builder.setTitle("Estação");
 		builder.setItems(items, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int item) {
 				estacao.setText(items[item]);
-				//showEstacao();
-				//limpaLocal(2);
 			}
 		});
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
 	
+	private void showSentido() {
+		final Button sentido = (Button) findViewById(R.id.sentido1);
+		sentido.setVisibility(View.VISIBLE);
+		sentido.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				chooseSentido();
+			}
+		});
+	}
 	
+	private void hideSentido() {
+		final Button sentido = (Button) findViewById(R.id.sentido1);
+		sentido.setVisibility(View.INVISIBLE);
+		this.sentido.setVisibility(View.INVISIBLE);
+	}
+
+	private void chooseSentido() {
+		String linha = this.linha.getText().toString();
+		final CharSequence[] items = getResources().getStringArray(LINHAS.get(linha));
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("Sentido");
+		builder.setItems(items, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int item) {
+				sentido.setText(items[item]);
+			}
+		});
+		AlertDialog alert = builder.create();
+		alert.show();
+	}
 }

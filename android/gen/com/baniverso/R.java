@@ -29,15 +29,19 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int denunciaComercio=0x7f060006;
-        public static final int denunciaDelito=0x7f060007;
-        public static final int denunciaVandalismo=0x7f060008;
-        public static final int estacao1=0x7f060004;
-        public static final int estacao2=0x7f060005;
+        public static final int dentro1=0x7f060004;
+        public static final int dentro2=0x7f060005;
+        public static final int denunciaComercio=0x7f06000a;
+        public static final int denunciaDelito=0x7f06000b;
+        public static final int denunciaVandalismo=0x7f06000c;
+        public static final int estacao1=0x7f060006;
+        public static final int estacao2=0x7f060007;
         public static final int linha1=0x7f060002;
         public static final int linha2=0x7f060003;
         public static final int meioTransporte1=0x7f060000;
         public static final int meioTransporte2=0x7f060001;
+        public static final int sentido1=0x7f060008;
+        public static final int sentido2=0x7f060009;
     }
     public static final class layout {
         public static final int local=0x7f030000;
