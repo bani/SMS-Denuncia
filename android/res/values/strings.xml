@@ -4,4 +4,12 @@
     <string name="app_name">SMS-Denúncia</string>
     <string name="denuncia">Selecione o tipo de denúncia:</string>
     <string name="local">Informe o local:</string>
+    <string-array name="linhas_metro">
+        <item>Azul</item>
+        <item>Verde</item>
+        <item>Vermelha</item>
+        <item>Amarela</item>
+        <item>Lilás</item>
+    </string-array>
+    
 </resources>
