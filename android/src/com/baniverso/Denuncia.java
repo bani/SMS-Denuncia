@@ -12,14 +12,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class Denuncia extends Activity {
-	private final Map<String,Integer> LINHAS = new HashMap<String,Integer>();
+	private static final Map<String,Integer> LINHAS = new HashMap<String,Integer>();
 	private String tipoDenuncia;
 	private TextView meioTransporte;
 	private TextView linha;
 	private TextView estacao;
 	
-	public Denuncia() {
-		super();
+	static {
 		LINHAS.put("Azul", R.array.linha1);
 		LINHAS.put("Verde", R.array.linha2);
 		LINHAS.put("Vermelha", R.array.linha3);
