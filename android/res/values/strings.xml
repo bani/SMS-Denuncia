@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, Denuncia!</string>
+    <string name="app_name">SMS-Denúncia</string>
+    <string name="denuncia">Selecione o tipo de denúncia:</string>
+    <string name="local">Informe o local:</string>
+</resources>

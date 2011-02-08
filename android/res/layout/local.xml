@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="@string/local"
+    />
+<LinearLayout android:id="@+id/meioTransporte0"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<Button android:id="@+id/meioTransporte1"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:layout_margin="10px"
+            android:text="Trem/Metrô" />
+<TextView android:id="@+id/meioTransporte2"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text=""
+    />
+</LinearLayout>
+</LinearLayout>
