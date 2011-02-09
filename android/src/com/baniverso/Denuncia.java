@@ -6,6 +6,7 @@ import java.util.Map;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,6 +26,7 @@ public class Denuncia extends Activity {
 	private CheckBox dentro;
 	private TextView sentido;
 	private EditText vagao;
+	private String denuncia;
 	
 	static {
 		LINHAS.put("Azul", R.array.linha1);
@@ -85,11 +87,10 @@ public class Denuncia extends Activity {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		final String sobre = "Copyright 2011 Vanessa Sabino\n\nEste programa é software livre.\n\nCódigo disponível em\nhttps://github.com/bani/SMS-Denuncia";
 	    switch (item.getItemId()) {
 	    case R.id.sobre:
 	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    	builder.setMessage(sobre)
+	    	builder.setMessage(this.getString(R.string.sobre))
 	    	       .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
 	    	        	   dialog.cancel();
@@ -283,7 +284,7 @@ public class Denuncia extends Activity {
 	}
 	
 	private void criaDenuncia() {
-		String denuncia = tipoDenuncia + " na linha " + linha.getText() + ". ";
+		denuncia = tipoDenuncia + " na linha " + linha.getText() + ". ";
 		if(dentro.isChecked()) {
 			denuncia += meioTransporte.getText() + " sentido " + sentido.getText();
 			denuncia += " próx. da estação ";
@@ -300,5 +301,42 @@ public class Denuncia extends Activity {
 		
 		final TextView texto = (TextView) findViewById(R.id.texto);
 		texto.setText(denuncia);
+		
+		final Button enviar = (Button) findViewById(R.id.enviar);
+		enviar.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				confirmar();
+			}
+		});
+	}
+	
+	private void confirmar() {
+    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    	builder.setMessage(this.getString(R.string.envio))
+    	       .setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
+    	           public void onClick(DialogInterface dialog, int id) {
+    	        	   enviar(false);
+    	           }
+    	       })
+    	       .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+    	           public void onClick(DialogInterface dialog, int id) {
+    	        	   dialog.cancel();
+    	           }
+    	       });
+    	AlertDialog alert = builder.create();
+    	alert.show();
+	}
+	
+	private void enviar(boolean teste) {
+		final Button enviar = (Button) findViewById(R.id.enviar);
+		enviar.setEnabled(false);
+		
+		//TODO alterar para o SmsManager (trabalho enorme para pegar o resultado)
+		Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+		sendIntent.putExtra("address", meioTransporte.getText().equals("Trem") ? this.getString(R.string.telefone_trem) : this.getString(R.string.telefone_metro));
+        sendIntent.putExtra("sms_body", denuncia); 
+        sendIntent.setType("vnd.android-dir/mms-sms");
+        startActivity(sendIntent);
+		
 	}
 }

@@ -13,20 +13,20 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10px"
-            android:text="Comércio irregular" />
+            android:text="@string/dComercio" />
 <Button android:id="@+id/denunciaDelito"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10px"
-            android:text="Delito" />
+            android:text="@string/dDelito" />
 <Button android:id="@+id/denunciaVandalismo"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10px"
-            android:text="Vandalismo" />
+            android:text="@string/dVandalismo" />
 <Button android:id="@+id/denunciaOutros"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10px"
-            android:text="Outros" />
+            android:text="@string/dOutra" />
 </LinearLayout>

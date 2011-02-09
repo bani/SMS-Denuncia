@@ -4,6 +4,14 @@
     <string name="denuncia">Selecione o tipo de denúncia:</string>
     <string name="local">Informe o local:</string>
     <string name="info">Forneça informações adicionais para ajudar os seguranças a localizarem o infrator:</string>
+    <string name="sobre">Copyright 2011 Vanessa Sabino\n\nEste programa é software livre.\n\nCódigo disponível em\nhttps://github.com/bani/SMS-Denuncia</string>
+    <string name="envio">Confirma o envio da denúncia por SMS?\n\nVocê será redirecionado para o aplicativo de envio de mensagens.</string>
+    <string name="dVandalismo">Vandalismo</string>
+    <string name="dComercio">Comércio Irregular</string>
+    <string name="dDelito">Delito</string>
+    <string name="dOutra">Outras</string>
+    <string name="telefone_trem">+551171504949</string>
+    <string name="telefone_metro">+551173332252</string>
     <string-array name="linhas_metro">
         <item>Azul</item>
         <item>Verde</item>
