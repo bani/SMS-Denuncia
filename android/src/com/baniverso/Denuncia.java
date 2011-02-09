@@ -305,6 +305,7 @@ public class Denuncia extends Activity {
 		final Button enviar = (Button) findViewById(R.id.enviar);
 		enviar.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
+				denuncia = texto.getText().toString();
 				confirmar();
 			}
 		});
@@ -328,9 +329,6 @@ public class Denuncia extends Activity {
 	}
 	
 	private void enviar(boolean teste) {
-		final Button enviar = (Button) findViewById(R.id.enviar);
-		enviar.setEnabled(false);
-		
 		//TODO alterar para o SmsManager (trabalho enorme para pegar o resultado)
 		Intent sendIntent = new Intent(Intent.ACTION_VIEW);
 		sendIntent.putExtra("address", meioTransporte.getText().equals("Trem") ? this.getString(R.string.telefone_trem) : this.getString(R.string.telefone_metro));
