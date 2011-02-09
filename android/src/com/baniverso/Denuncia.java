@@ -223,8 +223,13 @@ public class Denuncia extends Activity {
 		final CharSequence[] items = getResources().getStringArray(LINHAS.get(linha));
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Esta‹o");
+		final Button continuar = (Button) findViewById(R.id.continuar);
+		continuar.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				criaDenuncia();
+			}
+		});
 		builder.setItems(items, new DialogInterface.OnClickListener() {
-			final Button continuar = (Button) findViewById(R.id.continuar);
 			public void onClick(DialogInterface dialog, int item) {
 				estacao.setText(items[item]);
 				continuar.setVisibility(View.VISIBLE);
@@ -275,5 +280,25 @@ public class Denuncia extends Activity {
 		final TextView vagao = (TextView) findViewById(R.id.vagao1);
 		vagao.setVisibility(View.INVISIBLE);
 		this.vagao.setVisibility(View.INVISIBLE);
+	}
+	
+	private void criaDenuncia() {
+		String denuncia = tipoDenuncia + " na linha " + linha.getText() + ". ";
+		if(dentro.isChecked()) {
+			denuncia += meioTransporte.getText() + " sentido " + sentido.getText();
+			denuncia += " pr—x. da esta‹o ";
+		} else {
+			denuncia += "Esta‹o ";
+		}
+		denuncia +=  estacao.getText() + ".";
+		if(vagao.getText().length()>0) {
+			denuncia += " Vag‹o " + vagao.getText() + ".";
+		
+		}
+
+		setContentView(R.layout.send);
+		
+		final TextView texto = (TextView) findViewById(R.id.texto);
+		texto.setText(denuncia);
 	}
 }

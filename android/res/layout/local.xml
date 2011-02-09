@@ -80,6 +80,7 @@
 <EditText android:id="@+id/vagao2"
     android:layout_width="wrap_content" 
     android:layout_height="wrap_content"
+    android:inputType="phone"
     android:numeric="decimal"
     android:maxLength="8"
     android:text=""
