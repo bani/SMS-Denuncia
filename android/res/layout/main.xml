@@ -24,4 +24,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10px"
             android:text="Vandalismo" />
+<Button android:id="@+id/denunciaOutros"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10px"
+            android:text="Outros" />
 </LinearLayout>

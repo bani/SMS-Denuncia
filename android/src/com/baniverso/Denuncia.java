@@ -7,6 +7,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -38,7 +41,6 @@ public class Denuncia extends Activity {
 		LINHAS.put("Safira", R.array.linha12);
 	}
 
-	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,7 +49,7 @@ public class Denuncia extends Activity {
 		final Button denunciaComercio = (Button) findViewById(R.id.denunciaComercio);
 		denunciaComercio.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				gravaTipoDenuncia("Comércio");
+				gravaTipoDenuncia("Comércio irregular");
 			}
 		});
 
@@ -64,7 +66,44 @@ public class Denuncia extends Activity {
 				gravaTipoDenuncia("Vandalismo");
 			}
 		});
+		
+		final Button denunciaOutros = (Button) findViewById(R.id.denunciaOutros);
+		denunciaOutros.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				gravaTipoDenuncia("Denúncia");
+			}
+		});
 
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.menu, menu);
+	    return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		final String sobre = "Copyright 2011 Vanessa Sabino\n\nEste programa é software livre.\n\nCódigo disponível em\nhttps://github.com/bani/SMS-Denuncia";
+	    switch (item.getItemId()) {
+	    case R.id.sobre:
+	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	    	builder.setMessage(sobre)
+	    	       .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+	    	           public void onClick(DialogInterface dialog, int id) {
+	    	        	   dialog.cancel();
+	    	           }
+	    	       });
+	    	AlertDialog alert = builder.create();
+	    	alert.show();
+	        return true;
+	    case R.id.quit:
+	    	finish();
+	        return true;
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
 	}
 
 	private void gravaTipoDenuncia(String tipo) {
@@ -130,7 +169,7 @@ public class Denuncia extends Activity {
 	}
 
 	private void chooseLinha() {
-		String meio = meioTransporte.getText().toString();
+		final String meio = meioTransporte.getText().toString();
 		final CharSequence[] items = meio.equalsIgnoreCase("Trem") ? getResources()
 				.getStringArray(R.array.linhas_trem) : getResources()
 				.getStringArray(R.array.linhas_metro);
@@ -180,7 +219,7 @@ public class Denuncia extends Activity {
 	}
 
 	private void chooseEstacao() {
-		String linha = this.linha.getText().toString();
+		final String linha = this.linha.getText().toString();
 		final CharSequence[] items = getResources().getStringArray(LINHAS.get(linha));
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Estação");
@@ -212,8 +251,9 @@ public class Denuncia extends Activity {
 	}
 
 	private void chooseSentido() {
-		String linha = this.linha.getText().toString();
-		final CharSequence[] items = getResources().getStringArray(LINHAS.get(linha));
+		final String linha = this.linha.getText().toString();
+		final CharSequence[] estacoes = getResources().getStringArray(LINHAS.get(linha));
+		final CharSequence[] items = { estacoes[0], estacoes[estacoes.length-1]};
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Sentido");
 		builder.setItems(items, new DialogInterface.OnClickListener() {

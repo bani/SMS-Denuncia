@@ -3,6 +3,7 @@
     <string name="app_name">SMS-Denúncia</string>
     <string name="denuncia">Selecione o tipo de denúncia:</string>
     <string name="local">Informe o local:</string>
+    <string name="sobre">Copyright 2011 Vanessa Sabino</string>
     <string-array name="linhas_metro">
         <item>Azul</item>
         <item>Verde</item>
