@@ -1,5 +1,10 @@
-Aplicativo mobile para auxiliar no envio de denúncias por SMS para Trem e Metrô
+Aplicativo mobile que visa auxiliar no envio do SMS-Denúncia, serviço disponível nos metrôs e trens de São Paulo para que usuários avisem aos seguranças sobre comércio irregular, vandalismo, delito ou outras ocorrências nas estações ou dentro dos trens.
 
+Com alguns cliques o usuário seleciona o tipo da denúncia, linha, estação e sentido do trem, gerando automaticamente um texto com as primeiras informações necessárias para o SMS. Então basta completar com uma descrição do infrator e enviar.
+
+O binário pode ser baixado em http://baniverso.com/android/sms-denuncia.apk (QR Code em http://baniverso.com/android/sms-denuncia.png).
+
+Este software está disponível sob a licença MIT, apresentada abaixo. Porém, para fins de praticidade na distribuição mobile, não é necessário incluir a licença no binário, basta incluir um link para https://github.com/bani/SMS-Denuncia/ (como atualmente existe no menu "Sobre").
 
 
 Copyright (c) 2011 Vanessa Sabino
