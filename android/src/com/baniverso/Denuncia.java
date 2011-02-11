@@ -309,7 +309,7 @@ public class Denuncia extends Activity {
 
 		setContentView(R.layout.send);
 		
-		final TextView texto = (TextView) findViewById(R.id.texto);
+		final EditText texto = (EditText) findViewById(R.id.texto);
 		texto.setText(denuncia);
 		
 		final Button enviar = (Button) findViewById(R.id.enviar);
@@ -320,17 +320,15 @@ public class Denuncia extends Activity {
 			}
 		});
 		
-		TextView.OnEditorActionListener editListener = new TextView.OnEditorActionListener(){
-			
+		TextView.OnEditorActionListener sendListener = new TextView.OnEditorActionListener(){
 			public boolean onEditorAction(TextView text, int actionId, KeyEvent event) {
 				if(actionId == EditorInfo.IME_ACTION_SEND){
 					confirmar();
 				}
 				return true;
 			}
-
 		};
-		texto.setOnEditorActionListener(editListener);
+		texto.setOnEditorActionListener(sendListener);
 	}
 	
 	private void confirmar() {

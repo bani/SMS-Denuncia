@@ -1,28 +1,11 @@
-Aplicativo mobile que visa auxiliar no envio do SMS-Denúncia, serviço disponível nos metrôs e trens de São Paulo para que usuários avisem aos seguranças sobre comércio irregular, vandalismo, delito ou outras ocorrências nas estações ou dentro dos trens.
+Aplicativo mobile que visa auxiliar no envio do SMS-Denúncia, serviço disponível pelo Metrô e CPTM em São Paulo para que usuários avisem aos seguranças sobre comércio irregular, vandalismo, delito ou outras ocorrências nas estações ou dentro dos trens.
 
 Com alguns cliques o usuário seleciona o tipo da denúncia, linha, estação e sentido do trem, gerando automaticamente um texto com as primeiras informações necessárias para o SMS. Então basta completar com uma descrição do infrator e enviar.
 
 O binário pode ser baixado em http://baniverso.com/android/sms-denuncia.apk (QR Code em http://baniverso.com/android/sms-denuncia.png).
 
-Este software está disponível sob a licença MIT, apresentada abaixo. Porém, para fins de praticidade na distribuição mobile, não é necessário incluir a licença no binário, basta incluir um link para https://github.com/bani/SMS-Denuncia/ (como atualmente existe no menu "Sobre").
+Este software está disponível sob a licença MIT. Porém, para fins de praticidade na distribuição mobile, não é necessário incluir a licença no binário, basta incluir um link para https://github.com/bani/SMS-Denuncia/ (como atualmente existe no menu "Sobre").
 
 
-Copyright (c) 2011 Vanessa Sabino
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+KNOWN BUGS:
+- Em aparelhos QVGA, o número do carro não é atualizado automaticamente quando o usuário passa para o modo numérico
