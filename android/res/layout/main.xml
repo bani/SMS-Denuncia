@@ -6,27 +6,38 @@
     >
 <TextView  
     android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
+    android:layout_height="wrap_content"
+    android:textSize="20sp" 
     android:text="@string/denuncia"
     />
 <Button android:id="@+id/denunciaComercio"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8px"
+            android:textSize="18sp"
             android:text="@string/dComercio" />
 <Button android:id="@+id/denunciaDelito"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8px"
+            android:textSize="18sp"
             android:text="@string/dDelito" />
 <Button android:id="@+id/denunciaVandalismo"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8px"
+            android:textSize="18sp"
             android:text="@string/dVandalismo" />
+<Button android:id="@+id/denunciaSomAlto"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8px"
+            android:textSize="18sp"
+            android:text="@string/dSom" />
 <Button android:id="@+id/denunciaOutros"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8px"
+            android:textSize="18sp"
             android:text="@string/dOutra" />
 </LinearLayout>

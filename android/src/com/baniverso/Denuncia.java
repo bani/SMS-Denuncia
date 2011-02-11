@@ -29,18 +29,18 @@ public class Denuncia extends Activity {
 	private String denuncia;
 	
 	static {
-		LINHAS.put("Azul", R.array.linha1);
-		LINHAS.put("Verde", R.array.linha2);
-		LINHAS.put("Vermelha", R.array.linha3);
-		LINHAS.put("Amarela", R.array.linha4);
-		LINHAS.put("Lil‡s", R.array.linha5);
+		LINHAS.put("1-Azul", R.array.linha1);
+		LINHAS.put("2-Verde", R.array.linha2);
+		LINHAS.put("3-Vermelha", R.array.linha3);
+		LINHAS.put("4-Amarela", R.array.linha4);
+		LINHAS.put("5-LilÃ¡s", R.array.linha5);
 		
-		LINHAS.put("Rubi", R.array.linha7);
-		LINHAS.put("Diamante", R.array.linha8);
-		LINHAS.put("Esmeralda", R.array.linha9);
-		LINHAS.put("Turquesa", R.array.linha10);
-		LINHAS.put("Coral", R.array.linha11);
-		LINHAS.put("Safira", R.array.linha12);
+		LINHAS.put("7-Rubi", R.array.linha7);
+		LINHAS.put("8-Diamante", R.array.linha8);
+		LINHAS.put("9-Esmeralda", R.array.linha9);
+		LINHAS.put("10-Turquesa", R.array.linha10);
+		LINHAS.put("11-Coral", R.array.linha11);
+		LINHAS.put("12-Safira", R.array.linha12);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class Denuncia extends Activity {
 		final Button denunciaComercio = (Button) findViewById(R.id.denunciaComercio);
 		denunciaComercio.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				gravaTipoDenuncia("Comrcio irregular");
+				gravaTipoDenuncia("ComÃ©rcio irregular");
 			}
 		});
 
@@ -69,10 +69,17 @@ public class Denuncia extends Activity {
 			}
 		});
 		
+		final Button denunciaSomAlto = (Button) findViewById(R.id.denunciaSomAlto);
+		denunciaSomAlto.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				gravaTipoDenuncia("Som Alto");
+			}
+		});
+		
 		final Button denunciaOutros = (Button) findViewById(R.id.denunciaOutros);
 		denunciaOutros.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				gravaTipoDenuncia("Denœncia");
+				gravaTipoDenuncia("DenÃºncia");
 			}
 		});
 
@@ -110,7 +117,7 @@ public class Denuncia extends Activity {
 	private void gravaTipoDenuncia(String tipo) {
 		this.tipoDenuncia = tipo;
 		setContentView(R.layout.local);
-		// inicializa campos de informa‹o do local
+		// inicializa campos de informacao do local
 		meioTransporte = (TextView) findViewById(R.id.meioTransporte2);
 		linha = (TextView) findViewById(R.id.linha2);
 		estacao = (TextView) findViewById(R.id.estacao2);
@@ -122,7 +129,7 @@ public class Denuncia extends Activity {
 		showMeioTransporte();
 	}
 
-	// mtodo auxiliar para resetar as listas j‡ escolhidas a partir de certo
+	// metodo auxiliar para resetar as listas ja escolhidas a partir de certo
 	// ponto
 	private void limpaLocal(int passo) {
 		switch (passo) {
@@ -145,7 +152,7 @@ public class Denuncia extends Activity {
 	}
 
 	private void chooseMeioTransporte() {
-		final CharSequence[] items = { "Trem", "Metr™" };
+		final CharSequence[] items = { "CPTM", "MetrÃ´" };
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Meio de transporte");
 		builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -171,7 +178,7 @@ public class Denuncia extends Activity {
 
 	private void chooseLinha() {
 		final String meio = meioTransporte.getText().toString();
-		final CharSequence[] items = meio.equalsIgnoreCase("Trem") ? getResources()
+		final CharSequence[] items = meio.equalsIgnoreCase("CPTM") ? getResources()
 				.getStringArray(R.array.linhas_trem) : getResources()
 				.getStringArray(R.array.linhas_metro);
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -196,11 +203,11 @@ public class Denuncia extends Activity {
 			final Button estacao1 = (Button) findViewById(R.id.estacao1);
 			public void onClick(View v) {
 				if (dentro.isChecked()) {
-		             estacao1.setText("Pr—x. Esta‹o");
+		             estacao1.setText("PrÃ³x. EstaÃ§Ã£o");
 		             showSentido();
 		             showVagao();
 		         } else {
-		        	 estacao1.setText("Esta‹o");
+		        	 estacao1.setText("EstaÃ§Ã£o");
 		        	 hideSentido();
 		        	 hideVagao();
 		         }
@@ -223,7 +230,7 @@ public class Denuncia extends Activity {
 		final String linha = this.linha.getText().toString();
 		final CharSequence[] items = getResources().getStringArray(LINHAS.get(linha));
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Esta‹o");
+		builder.setTitle("EstaÃ§Ã£o");
 		final Button continuar = (Button) findViewById(R.id.continuar);
 		continuar.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -241,6 +248,7 @@ public class Denuncia extends Activity {
 	}
 	
 	private void showSentido() {
+		this.sentido.setVisibility(View.VISIBLE);
 		final Button sentido = (Button) findViewById(R.id.sentido1);
 		sentido.setVisibility(View.VISIBLE);
 		sentido.setOnClickListener(new View.OnClickListener() {
@@ -287,13 +295,13 @@ public class Denuncia extends Activity {
 		denuncia = tipoDenuncia + " na linha " + linha.getText() + ". ";
 		if(dentro.isChecked()) {
 			denuncia += meioTransporte.getText() + " sentido " + sentido.getText();
-			denuncia += " pr—x. da esta‹o ";
+			denuncia += " prÃ³x. da estaÃ§Ã£o ";
 		} else {
-			denuncia += "Esta‹o ";
+			denuncia += "EstaÃ§Ã£o ";
 		}
 		denuncia +=  estacao.getText() + ".";
 		if(vagao.getText().length()>0) {
-			denuncia += " Vag‹o " + vagao.getText() + ".";
+			denuncia += " VagÃ£o " + vagao.getText() + ".";
 		
 		}
 

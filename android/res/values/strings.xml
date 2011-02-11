@@ -9,23 +9,24 @@
 	<string name="dVandalismo">Vandalismo</string>
 	<string name="dComercio">Comércio Irregular</string>
 	<string name="dDelito">Delito</string>
+	<string name="dSom">Som Alto</string>
 	<string name="dOutra">Outras</string>
 	<string name="telefone_trem">+551171504949</string>
 	<string name="telefone_metro">+551173332252</string>
 	<string-array name="linhas_metro">
-		<item>Azul</item>
-		<item>Verde</item>
-		<item>Vermelha</item>
-		<item>Amarela</item>
-		<item>Lilás</item>
+		<item>1-Azul</item>
+		<item>2-Verde</item>
+		<item>3-Vermelha</item>
+		<item>4-Amarela</item>
+		<item>5-Lilás</item>
 	</string-array>
 	<string-array name="linhas_trem">
-		<item>Rubi</item>
-		<item>Diamante</item>
-		<item>Esmeralda</item>
-		<item>Turquesa</item>
-		<item>Coral</item>
-		<item>Safira</item>
+		<item>7-Rubi</item>
+		<item>8-Diamante</item>
+		<item>9-Esmeralda</item>
+		<item>10-Turquesa</item>
+		<item>11-Coral</item>
+		<item>12-Safira</item>
 	</string-array>
 	<string-array name="linha1">
 		<item>Jabaquara</item>

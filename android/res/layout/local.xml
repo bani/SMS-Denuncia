@@ -6,7 +6,8 @@
     >
 <TextView  
     android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
+    android:layout_height="wrap_content"
+    android:textSize="20sp" 
     android:text="@string/local"
     />
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,31 +16,39 @@
     android:stretchColumns="1">
 <TableRow>
 <Button android:id="@+id/meioTransporte1"
-            android:layout_width="120px"
+            android:layout_width="150px"
             android:layout_height="wrap_content"
-            android:text="Trem/Metrô" />
+            android:textSize="18sp" 
+            android:text="CPTM/Metrô" />
 <TextView android:id="@+id/meioTransporte2"
     android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
+    android:layout_height="wrap_content"
+    android:textStyle="bold"
+    android:textSize="18sp"
     android:text=""
     />
 </TableRow>
 <TableRow>
 <Button android:id="@+id/linha1"
-            android:layout_width="120px"
+            android:layout_width="150px"
             android:layout_height="wrap_content"
+            android:textSize="18sp" 
             android:text="Linha"
             android:visibility="invisible" />
 <TextView android:id="@+id/linha2"
     android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
+    android:layout_height="wrap_content"
+    android:textSize="18sp"
+    android:textStyle="bold"
     android:text=""
     />
 </TableRow>
 <TableRow>
 <TextView android:id="@+id/dentro1"
     android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
+    android:layout_height="wrap_content"
+    android:textSize="18sp"
+    android:textStyle="bold"
     android:text="dentro do trem?"
     android:visibility="invisible" />
 <CheckBox android:id="@+id/dentro2"
@@ -49,40 +58,46 @@
 </TableRow>
 <TableRow>
 <Button android:id="@+id/estacao1"
-            android:layout_width="120px"
+            android:layout_width="150px"
             android:layout_height="wrap_content"
+            android:textSize="18sp"
             android:text="Estação"
             android:visibility="invisible" />
 <TextView android:id="@+id/estacao2"
     android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
+    android:layout_height="wrap_content"
+    android:textSize="18sp"
+    android:textStyle="bold"
     android:text=""
     />
 </TableRow>
 <TableRow>
 <Button android:id="@+id/sentido1"
-            android:layout_width="120px"
+            android:layout_width="150px"
             android:layout_height="wrap_content"
+            android:textSize="18sp" 
             android:text="Sentido"
             android:visibility="invisible" />
 <TextView android:id="@+id/sentido2"
     android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
+    android:layout_height="wrap_content"
+    android:textSize="18sp"
+    android:textStyle="bold"
     android:text=""
     />
 </TableRow>
 <TableRow>
 <TextView android:id="@+id/vagao1"
-            android:layout_width="120px"
+            android:layout_width="150px"
             android:layout_height="wrap_content"
-            android:text="Num. do vagão"
+            android:textSize="18sp" 
+            android:text="Num. do carro"
             android:visibility="invisible" />
 <EditText android:id="@+id/vagao2"
     android:layout_width="wrap_content" 
     android:layout_height="wrap_content"
-    android:inputType="phone"
-    android:numeric="decimal"
-    android:maxLength="8"
+    android:maxLength="12"
+    android:textSize="18sp"
     android:text=""
     android:visibility="invisible" />
 </TableRow>
@@ -92,9 +107,10 @@
     android:layout_height="fill_parent">
 <Button android:id="@+id/continuar"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="25px"
+            android:layout_marginTop="5px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="18sp"
             android:text="Continuar"
             android:visibility="invisible" />
 </RelativeLayout>
