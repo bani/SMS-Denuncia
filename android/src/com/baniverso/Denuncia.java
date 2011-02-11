@@ -127,6 +127,17 @@ public class Denuncia extends Activity {
 		dentro = (CheckBox) findViewById(R.id.dentro2);
 		sentido = (TextView) findViewById(R.id.sentido2);
 		vagao = (EditText) findViewById(R.id.vagao2);
+		
+		//Botao de send para o teclado do numero do carro
+		TextView.OnEditorActionListener sendListener = new TextView.OnEditorActionListener(){
+			public boolean onEditorAction(TextView text, int actionId, KeyEvent event) {
+				if(actionId == EditorInfo.IME_ACTION_SEND){
+					criaDenuncia();
+				}
+				return true;
+			}
+		};
+		vagao.setOnEditorActionListener(sendListener);
 
 		showMeioTransporte();
 	}
@@ -307,41 +318,15 @@ public class Denuncia extends Activity {
 		
 		}
 
-		setContentView(R.layout.send);
-		
-		final EditText texto = (EditText) findViewById(R.id.texto);
-		texto.setText(denuncia);
-		
-		final Button enviar = (Button) findViewById(R.id.enviar);
-		enviar.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				denuncia = texto.getText().toString();
-				confirmar();
-			}
-		});
-		
-		TextView.OnEditorActionListener sendListener = new TextView.OnEditorActionListener(){
-			public boolean onEditorAction(TextView text, int actionId, KeyEvent event) {
-				if(actionId == EditorInfo.IME_ACTION_SEND){
-					confirmar();
-				}
-				return true;
-			}
-		};
-		texto.setOnEditorActionListener(sendListener);
+		confirmar();
 	}
 	
 	private void confirmar() {
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
     	builder.setMessage(this.getString(R.string.envio))
-    	       .setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
+    	       .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
     	           public void onClick(DialogInterface dialog, int id) {
     	        	   enviar(false);
-    	           }
-    	       })
-    	       .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-    	           public void onClick(DialogInterface dialog, int id) {
-    	        	   dialog.cancel();
     	           }
     	       });
     	AlertDialog alert = builder.create();
@@ -349,7 +334,6 @@ public class Denuncia extends Activity {
 	}
 	
 	private void enviar(boolean teste) {
-		//TODO alterar para o SmsManager (trabalho enorme para pegar o resultado)
 		Intent sendIntent = new Intent(Intent.ACTION_VIEW);
 		sendIntent.putExtra("address", meioTransporte.getText().equals("Trem") ? this.getString(R.string.telefone_trem) : this.getString(R.string.telefone_metro));
         sendIntent.putExtra("sms_body", denuncia); 

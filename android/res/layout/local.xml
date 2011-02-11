@@ -99,7 +99,7 @@
     android:maxLength="12"
     android:textSize="18sp"
     android:text=""
-    android:imeOptions="actionDone"
+    android:imeOptions="actionSend"
     android:visibility="invisible" />
 </TableRow>
 <TableRow>
@@ -110,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:text="Continuar"
+            android:text="Enviar"
             android:visibility="invisible" />
 </TableRow>
 </TableLayout>
