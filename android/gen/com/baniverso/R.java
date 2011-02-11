@@ -29,26 +29,27 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int continuar=0x7f07000c;
+        public static final int continuar=0x7f07000d;
         public static final int dentro1=0x7f070004;
         public static final int dentro2=0x7f070005;
-        public static final int denunciaComercio=0x7f07000d;
-        public static final int denunciaDelito=0x7f07000e;
-        public static final int denunciaOutros=0x7f070011;
-        public static final int denunciaSomAlto=0x7f070010;
-        public static final int denunciaVandalismo=0x7f07000f;
-        public static final int enviar=0x7f070013;
+        public static final int denunciaComercio=0x7f07000e;
+        public static final int denunciaDelito=0x7f07000f;
+        public static final int denunciaOutros=0x7f070012;
+        public static final int denunciaSomAlto=0x7f070011;
+        public static final int denunciaVandalismo=0x7f070010;
+        public static final int enviar=0x7f070014;
         public static final int estacao1=0x7f070006;
         public static final int estacao2=0x7f070007;
         public static final int linha1=0x7f070002;
         public static final int linha2=0x7f070003;
         public static final int meioTransporte1=0x7f070000;
         public static final int meioTransporte2=0x7f070001;
-        public static final int quit=0x7f070015;
+        public static final int quit=0x7f070016;
         public static final int sentido1=0x7f070008;
         public static final int sentido2=0x7f070009;
-        public static final int sobre=0x7f070014;
-        public static final int texto=0x7f070012;
+        public static final int sobre=0x7f070015;
+        public static final int space=0x7f07000c;
+        public static final int texto=0x7f070013;
         public static final int vagao1=0x7f07000a;
         public static final int vagao2=0x7f07000b;
     }

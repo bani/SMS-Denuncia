@@ -12,7 +12,7 @@
     />
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
     android:stretchColumns="1">
 <TableRow>
 <Button android:id="@+id/meioTransporte1"
@@ -99,19 +99,19 @@
     android:maxLength="12"
     android:textSize="18sp"
     android:text=""
+    android:imeOptions="actionDone"
     android:visibility="invisible" />
 </TableRow>
-</TableLayout>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+<TableRow>
+<TextView android:id="@+id/space"
+            android:visibility="invisible" />
 <Button android:id="@+id/continuar"
-            android:layout_alignParentRight="true"
             android:layout_marginTop="5px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="Continuar"
             android:visibility="invisible" />
-</RelativeLayout>
+</TableRow>
+</TableLayout>
 </LinearLayout>
