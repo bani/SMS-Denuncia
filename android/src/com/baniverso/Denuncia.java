@@ -294,14 +294,14 @@ public class Denuncia extends Activity {
 	private void criaDenuncia() {
 		denuncia = tipoDenuncia + " na linha " + linha.getText() + ". ";
 		if(dentro.isChecked()) {
-			denuncia += meioTransporte.getText() + " sentido " + sentido.getText();
+			denuncia += "Trem sentido " + sentido.getText();
 			denuncia += " próx. da estação ";
 		} else {
 			denuncia += "Estação ";
 		}
 		denuncia +=  estacao.getText() + ".";
 		if(vagao.getText().length()>0) {
-			denuncia += " Vagão " + vagao.getText() + ".";
+			denuncia += " Carro " + vagao.getText() + ".";
 		
 		}
 
