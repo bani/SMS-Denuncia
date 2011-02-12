@@ -30,6 +30,9 @@ public class Denuncia extends Activity {
 	private EditText vagao;
 	private String denuncia;
 	
+	private static final String CPTM = "CPTM";
+	private static final String METRO = "Metrô";
+	
 	static {
 		LINHAS.put("1-Azul", R.array.linha1);
 		LINHAS.put("2-Verde", R.array.linha2);
@@ -165,7 +168,7 @@ public class Denuncia extends Activity {
 	}
 
 	private void chooseMeioTransporte() {
-		final CharSequence[] items = { "CPTM", "Metrô" };
+		final CharSequence[] items = { CPTM, METRO };
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Meio de transporte");
 		builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -191,7 +194,7 @@ public class Denuncia extends Activity {
 
 	private void chooseLinha() {
 		final String meio = meioTransporte.getText().toString();
-		final CharSequence[] items = meio.equalsIgnoreCase("CPTM") ? getResources()
+		final CharSequence[] items = meio.equalsIgnoreCase(CPTM) ? getResources()
 				.getStringArray(R.array.linhas_trem) : getResources()
 				.getStringArray(R.array.linhas_metro);
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -335,7 +338,7 @@ public class Denuncia extends Activity {
 	
 	private void enviar(boolean teste) {
 		Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-		sendIntent.putExtra("address", meioTransporte.getText().equals("Trem") ? this.getString(R.string.telefone_trem) : this.getString(R.string.telefone_metro));
+		sendIntent.putExtra("address", meioTransporte.getText().equals(CPTM) ? this.getString(R.string.telefone_trem) : this.getString(R.string.telefone_metro));
         sendIntent.putExtra("sms_body", denuncia); 
         sendIntent.setType("vnd.android-dir/mms-sms");
         startActivity(sendIntent);

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.baniverso.smsdenuncia"
       android:versionCode="1"
-      android:versionName="1.0">
+      android:versionName="0.5">
     <application android:icon="@drawable/icon" android:label="@string/app_name">
         <activity android:name=".Denuncia"
                   android:screenOrientation="nosensor"
@@ -12,8 +12,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
-
-
+    <uses-sdk android:minSdkVersion="4" />
 </manifest> 

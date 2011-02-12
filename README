@@ -2,9 +2,9 @@ Aplicativo mobile que visa auxiliar no envio do SMS-Denúncia, serviço disponí
 
 Com alguns cliques o usuário seleciona o tipo da denúncia, linha, estação e sentido do trem, gerando automaticamente um texto com as primeiras informações necessárias para o SMS. Então basta completar com uma descrição do infrator e enviar.
 
-O binário pode ser baixado em http://baniverso.com/android/sms-denuncia.apk (QR Code em http://baniverso.com/android/sms-denuncia.png).
+O SMS-Denúncia está disponível no Android Market - http://bit.ly/smsdenuncia (QR Code dentro da pasta img).
 
-Este software está disponível sob a licença MIT. Porém, para fins de praticidade na distribuição mobile, não é necessário incluir a licença no binário, basta incluir um link para https://github.com/bani/SMS-Denuncia/ (como atualmente existe no menu "Sobre").
+Este software está sob a licença MIT. Porém, para fins de praticidade na distribuição mobile, não é necessário incluir a licença no binário, basta incluir um link para https://github.com/bani/SMS-Denuncia/ (como atualmente existe no menu "Sobre").
 
 
 KNOWN BUGS:

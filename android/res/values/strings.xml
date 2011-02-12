@@ -4,7 +4,7 @@
 	<string name="denuncia">Selecione o tipo de denúncia:</string>
 	<string name="local">Informe o local:</string>
 	<string name="sobre">Este programa é software livre.\n\nCódigo disponível em\nhttps://github.com/bani/SMS-Denuncia</string>
-	<string name="envio">Você será redirecionado para o aplicativo de mensagens.\n\nEdite o texto para fornecer informações adicionais para ajudar os seguranças a localizarem o infrator antes de enviar.</string>
+	<string name="envio">Edite o texto para fornecer uma descrição do infrator e informações adicionais que ajudem os seguranças a localizá-lo antes de enviar.</string>
 	<string name="dVandalismo">Vandalismo</string>
 	<string name="dComercio">Comércio Irregular</string>
 	<string name="dDelito">Delito</string>
