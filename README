@@ -8,5 +8,4 @@ Este software está disponível sob a licença MIT. Porém, para fins de pratici
 
 
 KNOWN BUGS:
-- Aplicativo reinicializa quando muda a orientação
-- Botão enviar não fica visível na horizontal
+- Aplicativo não reconhece mudança de orientação (feito porque ele perdia todos os dados quando alterava)

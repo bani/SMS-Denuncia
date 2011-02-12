@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -339,6 +340,6 @@ public class Denuncia extends Activity {
         sendIntent.putExtra("sms_body", denuncia); 
         sendIntent.setType("vnd.android-dir/mms-sms");
         startActivity(sendIntent);
-		
 	}
+	
 }
