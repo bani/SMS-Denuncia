@@ -8,6 +8,5 @@ Este software está disponível sob a licença MIT. Porém, para fins de pratici
 
 
 KNOWN BUGS:
-- Em aparelhos QVGA, o campo de número do carro não é atualizado automaticamente enquanto o usuário digita.
 - Aplicativo reinicializa quando muda a orientação
-- Não faz rolagem automaticamente (necessário na horizontal)
+- Botão enviar não fica visível na horizontal
