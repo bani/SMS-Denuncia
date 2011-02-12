@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.baniverso;
+package com.baniverso.smsdenuncia;
 
 public final class R {
     public static final class array {

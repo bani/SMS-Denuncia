@@ -1,4 +1,4 @@
-package com.baniverso;
+package com.baniverso.smsdenuncia;
 
 import java.util.HashMap;
 import java.util.Map;
