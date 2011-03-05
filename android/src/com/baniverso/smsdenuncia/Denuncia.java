@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -47,6 +48,11 @@ public class Denuncia extends Activity {
 		LINHAS.put("11-Coral", R.array.linha11);
 		LINHAS.put("12-Safira", R.array.linha12);
 	}
+	
+	@Override
+    public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+    }
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
