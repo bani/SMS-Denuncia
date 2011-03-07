@@ -23,6 +23,9 @@
                 <Component componentID="101" typeID="C#CallPoint">
                     <Property name="accessCode" typeID="P#javacode" value="VdoSend();"/>
                 </Component>
+                <Component componentID="133" typeID="C#CallPoint">
+                    <Property name="accessCode" typeID="P#javacode" value="VdoMontaSMS();"/>
+                </Component>
             </Component>
             <Component componentID="6" typeID="C#ControllersCategory">
                 <Component componentID="7" typeID="C#CommandListener"/>
@@ -239,10 +242,10 @@
                     <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
                     <Property name="items" typeID="1Cjavax.microedition.lcdui.Item" value="A2:3_R984_R112"/>
                     <Component componentID="92" typeID="C#CommandEventSource">
-                        <Property name="eventHandler" typeID="C#EventHandler" value="R95"/>
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R135"/>
                         <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R74"/>
                         <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R57"/>
-                        <Component componentID="95" typeID="C#CallPointEventHandler">
+                        <Component componentID="135" typeID="C#CallPointEventHandler">
                             <Property name="eventSource" typeID="C#EventSource" value="R92"/>
                             <Property name="callPoint" typeID="C#CallPoint" value="R86"/>
                         </Component>
@@ -263,12 +266,12 @@
                         <Property name="itemCommandListener" typeID="C#ItemCommandListener" value="R17"/>
                     </Component>
                     <Component componentID="125" typeID="C#CommandEventSource">
-                        <Property name="eventHandler" typeID="C#EventHandler" value="R126"/>
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R136"/>
                         <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R74"/>
                         <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R99"/>
-                        <Component componentID="126" typeID="C#SwitchDisplayableEventHandler">
+                        <Component componentID="136" typeID="C#CallPointEventHandler">
                             <Property name="eventSource" typeID="C#EventSource" value="R125"/>
-                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R107"/>
+                            <Property name="callPoint" typeID="C#CallPoint" value="R133"/>
                         </Component>
                     </Component>
                 </Component>
@@ -276,7 +279,7 @@
                     <Property name="instanceName" typeID="Pjava.lang.String" value="VtextBoxSMS"/>
                     <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
                     <Property name="commands" typeID="1C#CommandEventSource" value="A2:4_R1154_R118"/>
-                    <Property name="title" typeID="Pjava.lang.String" value="VAcrescente informações sobre o infrator:"/>
+                    <Property name="title" typeID="Pjava.lang.String" value="VSMS-Denúncia"/>
                     <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
                     <Property name="string" typeID="Pjava.lang.String" value="V"/>
                     <Property name="maxSize" typeID="Pint" value="V260"/>
@@ -311,6 +314,7 @@
         <Node componentID="72" descriptorID="componentNode72" x="199" y="187"/>
         <Node componentID="51" descriptorID="componentNode51" x="200" y="263"/>
         <Node componentID="2" descriptorID="componentNode2" x="17" y="15"/>
+        <Node componentID="133" descriptorID="componentNode133" x="148" y="784"/>
         <Node componentID="74" descriptorID="componentNode74" x="197" y="584"/>
         <Node componentID="73" descriptorID="componentNode73" x="195" y="428"/>
         <Node componentID="86" descriptorID="componentNode86" x="418" y="392"/>

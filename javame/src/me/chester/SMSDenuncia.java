@@ -161,7 +161,7 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
                         // write post-action user code here
             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|3|125-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getTextBoxSMS());//GEN-LINE:|7-commandAction|4|125-postAction
+                doMontaSMS();//GEN-LINE:|7-commandAction|4|125-postAction
                 // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|5|81-preAction
         } else if (displayable == formDentro) {
@@ -539,7 +539,7 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
     public TextBox getTextBoxSMS() {
         if (textBoxSMS == null) {//GEN-END:|107-getter|0|107-preInit
             // write pre-init user code here
-            textBoxSMS = new TextBox("Acrescente informa\u00E7\u00F5es sobre o infrator:", "", 260, TextField.ANY);//GEN-BEGIN:|107-getter|1|107-postInit
+            textBoxSMS = new TextBox("SMS-Den\u00FAncia", "", 260, TextField.ANY);//GEN-BEGIN:|107-getter|1|107-postInit
             textBoxSMS.addCommand(getEnviarCommand());
             textBoxSMS.addCommand(getBackCommand());
             textBoxSMS.setCommandListener(this);//GEN-END:|107-getter|1|107-postInit
@@ -687,6 +687,24 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
         }
     }
 
+    public void doMontaSMS() {
+        // TODO: traduzir direito o tipodenuncia
+        String denuncia = getSelectedString(getChoiceGroupTipo())
+                + " na linha " + getSelectedString(getChoiceGroupLinha()) + ". ";
+        if(getSelectedIndex(getChoiceGroupDentro()) == DENTRO_TREM) {
+            denuncia += "Trem sentido " + getSelectedString(getChoiceGroupSentido());
+            denuncia += " próx. da estação ";
+        } else {
+            denuncia += "Estação ";
+        }
+        denuncia += getSelectedString(getChoiceGroupEstacao()) + ".";
+        if(getTextFieldCarro().getString().length()>0) {
+            denuncia += " Carro " + getTextFieldCarro().getString() + ".";
+        }
+        getTextBoxSMS().setString(denuncia);
+        setCurrent(getTextBoxSMS());
+    }
+
     public void doSend() {
         class Sender implements Runnable {
             public void run() {
@@ -738,6 +756,10 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
             }
         }
         return -1;
+    }
+
+    private String getSelectedString(ChoiceGroup cg) {
+        return cg.getString(getSelectedIndex(cg));
     }
 
     /**
