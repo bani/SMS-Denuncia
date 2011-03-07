@@ -1,6 +1,25 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2011 Carlos Duarte do Nascimento (Chester)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ * Portions based on SMS-Denuncia Android - Copyright (c) 2011 Vanessa Sabino
  */
 
 package me.chester;
@@ -13,6 +32,12 @@ import javax.wireless.messaging.MessageConnection;
 import javax.wireless.messaging.TextMessage;
 
 /**
+ * Midlet que compõe um SMS representando uma denúncia de irregularidade na
+ * CPTM ou Metrô.
+ * <p>
+ * Consiste em um conjunto de forms para cada opção, disparando uma thread que
+ * auto-avança o form atual sempre que uma opção é selecionada.
+ *
  * @author chester
  */
 public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
@@ -24,6 +49,16 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
     private static final int DENTRO_TREM = 0;
 
     private static final int DENTRO_ESTACAO = 1;
+
+    private static final String TELEFONE_TREM = "+551171504949";
+
+    private static final String TELEFONE_METRO = "+551173332252";
+
+    /**
+     * Se for não-null, manda o SMS para este telefone (prependando o que iria
+     * usar na mensagem.
+     */
+    private static final String TELEFONE_DEBUG = null;
 
     private static final String[][] LINHAS = {
                     {"7-Rubi", "8-Diamante", "9-Esmeralda", "10-Turquesa", "11-Coral", "12-Safira"},
@@ -284,7 +319,7 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
             choiceGroupTipo.append("Delito", null);
             choiceGroupTipo.append("Vandalismo", null);
             choiceGroupTipo.append("Som Alto", null);
-            choiceGroupTipo.append("Outras", null);
+            choiceGroupTipo.append("Outros", null);
             choiceGroupTipo.setLayout(ImageItem.LAYOUT_DEFAULT);
             choiceGroupTipo.setSelectedFlags(new boolean[] { false, false, false, false, false });//GEN-END:|45-getter|1|45-postInit
             // write post-init user code here
@@ -688,9 +723,11 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
     }
 
     public void doMontaSMS() {
-        // TODO: traduzir direito o tipodenuncia
-        String denuncia = getSelectedString(getChoiceGroupTipo())
-                + " na linha " + getSelectedString(getChoiceGroupLinha()) + ". ";
+        String denuncia = getSelectedString(getChoiceGroupTipo());
+        if (getSelectedIndex(getChoiceGroupTipo())==4) {
+            denuncia = "Denúncia";
+        }
+        denuncia += " na linha " + getSelectedString(getChoiceGroupLinha()) + ". ";
         if(getSelectedIndex(getChoiceGroupDentro()) == DENTRO_TREM) {
             denuncia += "Trem sentido " + getSelectedString(getChoiceGroupSentido());
             denuncia += " próx. da estação ";
@@ -709,21 +746,19 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
         class Sender implements Runnable {
             public void run() {
                 try {
-                    //        String denuncia = tipoDenuncia + " na linha " + linha.getText() + ". ";
-                    //        if(dentro.isChecked()) {
-                    //            denuncia += "Trem sentido " + sentido.getText();
-                    //            denuncia += " próx. da estação ";
-                    //        } else {
-                    //            denuncia += "Estação ";
-                    //        }
-                    //        denuncia += estacao.getText() + ".";
-                    //        if(getTextFieldCarro().getString().length()>0) {
-                    //            denuncia += " Carro " + getTextFieldCarro().getString() + ".";
-                    //        }
-                    String addr = "sms://" + "12345677";
+                    String addr = "sms://";
+                    if (getSelectedIndex(getChoiceGroupDentro()) == DENTRO_TREM) {
+                        addr += TELEFONE_TREM
+                    } else {
+                        addr += TELEFONE_METRO
+                    }
+                    if (TELEFONE_DEBUG != null) {
+                        getTextBoxSMS().setString(addr + " " + getTextBoxSMS().getString());
+                        addr = "sms://" + TELEFONE_DEBUG;
+                    }
                     MessageConnection conn = (MessageConnection) Connector.open(addr);
                     TextMessage msg = (TextMessage) conn.newMessage(MessageConnection.TEXT_MESSAGE);
-                    msg.setPayloadText("esse tem acentuação");
+                    msg.setPayloadText(getTextBoxSMS().getString());
                     conn.send(msg);
                 } catch (IOException ex) {
                     //getTextFieldSMS().setString(ex.getMessage());

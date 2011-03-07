@@ -92,7 +92,7 @@
                             <Property name="string" typeID="Pjava.lang.String" value="VVandalismo"/>
                         </Component>
                         <Component componentID="56" typeID="C#ChoiceElement">
-                            <Property name="string" typeID="Pjava.lang.String" value="VOutras"/>
+                            <Property name="string" typeID="Pjava.lang.String" value="VOutros"/>
                         </Component>
                     </Component>
                     <Component componentID="63" typeID="C#CommandEventSource">
