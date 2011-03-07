@@ -257,7 +257,7 @@
                         <Property name="commands" typeID="1C#ItemCommandEventSource" value="A0:"/>
                         <Property name="itemCommandListener" typeID="C#ItemCommandListener" value="R17"/>
                         <Property name="maxSize" typeID="Pint" value="V32"/>
-                        <Property name="constraints" typeID="Pint" value="V0"/>
+                        <Property name="constraints" typeID="Pint" value="V524288"/>
                     </Component>
                     <Component componentID="112" typeID="Cjavax.microedition.lcdui.StringItem">
                         <Property name="instanceName" typeID="Pjava.lang.String" value="VstringItem"/>
@@ -315,7 +315,7 @@
         <Node componentID="51" descriptorID="componentNode51" x="200" y="263"/>
         <Node componentID="2" descriptorID="componentNode2" x="17" y="15"/>
         <Node componentID="133" descriptorID="componentNode133" x="148" y="784"/>
-        <Node componentID="74" descriptorID="componentNode74" x="197" y="584"/>
+        <Node componentID="74" descriptorID="componentNode74" x="197" y="585"/>
         <Node componentID="73" descriptorID="componentNode73" x="195" y="428"/>
         <Node componentID="86" descriptorID="componentNode86" x="418" y="392"/>
         <Node componentID="70" descriptorID="componentNode70" x="191" y="506"/>

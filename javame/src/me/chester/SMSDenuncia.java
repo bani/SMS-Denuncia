@@ -539,7 +539,7 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
     public TextField getTextFieldCarro() {
         if (textFieldCarro == null) {//GEN-END:|98-getter|0|98-preInit
             // write pre-init user code here
-            textFieldCarro = new TextField("N\u00FAmero do Carro", null, 32, TextField.ANY);//GEN-LINE:|98-getter|1|98-postInit
+            textFieldCarro = new TextField("N\u00FAmero do Carro", null, 32, TextField.ANY | TextField.NON_PREDICTIVE);//GEN-LINE:|98-getter|1|98-postInit
             // write post-init user code here
         }//GEN-BEGIN:|98-getter|2|
         return textFieldCarro;
@@ -738,6 +738,10 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
         if(getTextFieldCarro().getString().length()>0) {
             denuncia += " Carro " + getTextFieldCarro().getString() + ".";
         }
+        if (TELEFONE_DEBUG != null) {
+            denuncia = "[DEBUG-IRIA P/" + getTelefoneDestino() + "] " + denuncia;
+        }
+
         getTextBoxSMS().setString(denuncia);
         setCurrent(getTextBoxSMS());
     }
@@ -746,14 +750,8 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
         class Sender implements Runnable {
             public void run() {
                 try {
-                    String addr = "sms://";
-                    if (getSelectedIndex(getChoiceGroupDentro()) == DENTRO_TREM) {
-                        addr += TELEFONE_TREM
-                    } else {
-                        addr += TELEFONE_METRO
-                    }
+                    String addr = "sms://" + getTelefoneDestino();
                     if (TELEFONE_DEBUG != null) {
-                        getTextBoxSMS().setString(addr + " " + getTextBoxSMS().getString());
                         addr = "sms://" + TELEFONE_DEBUG;
                     }
                     MessageConnection conn = (MessageConnection) Connector.open(addr);
@@ -768,10 +766,14 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
         }
         Thread t = new Thread(new Sender());
         t.start();
+    }
 
-
-
-
+    private String getTelefoneDestino() {
+        if (getSelectedIndex(getChoiceGroupDentro()) == DENTRO_TREM) {
+            return TELEFONE_TREM;
+        } else {
+            return TELEFONE_METRO;
+        }
     }
 
 
