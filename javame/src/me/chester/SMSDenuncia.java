@@ -3,15 +3,19 @@
  * and open the template in the editor.
  */
 
-package hello;
+package me.chester;
 
+import java.io.IOException;
+import javax.microedition.io.Connector;
 import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
+import javax.wireless.messaging.MessageConnection;
+import javax.wireless.messaging.TextMessage;
 
 /**
  * @author chester
  */
-public class HelloMIDlet extends MIDlet implements CommandListener, Runnable {
+public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
 
     private static final int MEIO_CPTM = 0;
 
@@ -45,7 +49,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener, Runnable {
     /**
      * Forms na ordem que têm que aparecer
      */
-    private Form[] FORMS = {getFormTipo(), getFormDentro(), getFormMeio(), getFormLinha(), getFormEstacao(), getFormSentido(), getFormCarro(), getFormPreview()};
+    private Displayable[] FORMS = {getFormTipo(), getFormDentro(), getFormMeio(), getFormLinha(), getFormEstacao(), getFormSentido(), getFormCarro(), getTextBoxSMS()};
 
     /**
      * Campos de pergunta na ordem em que estão no array FORMS
@@ -59,28 +63,30 @@ public class HelloMIDlet extends MIDlet implements CommandListener, Runnable {
     //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
     private Command exitCommand;
     private Command backCommand;
-    private Form formPreview;
-    private TextField textFieldSMS;
+    private Command okCommand;
+    private Command enviarCommand;
     private Form formTipo;
     private ChoiceGroup choiceGroupTipo;
     private Form formMeio;
     private ChoiceGroup choiceGroupMeio;
-    private Form formLinha;
-    private ChoiceGroup choiceGroupLinha;
     private Form formEstacao;
     private ChoiceGroup choiceGroupEstacao;
+    private Form formLinha;
+    private ChoiceGroup choiceGroupLinha;
     private Form formDentro;
     private ChoiceGroup choiceGroupDentro;
     private Form formSentido;
     private ChoiceGroup choiceGroupSentido;
     private Form formCarro;
     private TextField textFieldCarro;
+    private StringItem stringItem;
+    private TextBox textBoxSMS;
     //</editor-fold>//GEN-END:|fields|0|
 
     /**
      * The HelloMIDlet constructor.
      */
-    public HelloMIDlet() {
+    public SMSDenuncia() {
     }
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Methods ">//GEN-BEGIN:|methods|0|
@@ -153,35 +159,33 @@ public class HelloMIDlet extends MIDlet implements CommandListener, Runnable {
                 // write pre-action user code here
                 doBack();//GEN-LINE:|7-commandAction|2|92-postAction
                         // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|3|81-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|3|125-preAction
+                // write pre-action user code here
+                switchDisplayable(null, getTextBoxSMS());//GEN-LINE:|7-commandAction|4|125-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|5|81-preAction
         } else if (displayable == formDentro) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|3|81-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|5|81-preAction
                 // write pre-action user code here
-                doBack();//GEN-LINE:|7-commandAction|4|81-postAction
+                doBack();//GEN-LINE:|7-commandAction|6|81-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|5|90-preAction
+            }//GEN-BEGIN:|7-commandAction|7|90-preAction
         } else if (displayable == formEstacao) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|5|90-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|7|90-preAction
                 // write pre-action user code here
-                doBack();//GEN-LINE:|7-commandAction|6|90-postAction
+                doBack();//GEN-LINE:|7-commandAction|8|90-postAction
                         // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|7|67-preAction
+            }//GEN-BEGIN:|7-commandAction|9|67-preAction
         } else if (displayable == formLinha) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|7|67-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|9|67-preAction
                 // write pre-action user code here
-                doBack();//GEN-LINE:|7-commandAction|8|67-postAction
+                doBack();//GEN-LINE:|7-commandAction|10|67-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|9|58-preAction
+            }//GEN-BEGIN:|7-commandAction|11|58-preAction
         } else if (displayable == formMeio) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|9|58-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|11|58-preAction
                 // write pre-action user code here
-                doBack();//GEN-LINE:|7-commandAction|10|58-postAction
-                // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|11|19-preAction
-        } else if (displayable == formPreview) {
-            if (command == exitCommand) {//GEN-END:|7-commandAction|11|19-preAction
-                // write pre-action user code here
-                exitMIDlet();//GEN-LINE:|7-commandAction|12|19-postAction
+                doBack();//GEN-LINE:|7-commandAction|12|58-postAction
                 // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|13|91-preAction
         } else if (displayable == formSentido) {
@@ -195,11 +199,23 @@ public class HelloMIDlet extends MIDlet implements CommandListener, Runnable {
                 // write pre-action user code here
                 exitMIDlet();//GEN-LINE:|7-commandAction|16|63-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|17|7-postCommandAction
-        }//GEN-END:|7-commandAction|17|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|17|118-preAction
+        } else if (displayable == textBoxSMS) {
+            if (command == backCommand) {//GEN-END:|7-commandAction|17|118-preAction
+                // write pre-action user code here
+                doBack();//GEN-LINE:|7-commandAction|18|118-postAction
+                // write post-action user code here
+            } else if (command == enviarCommand) {//GEN-LINE:|7-commandAction|19|115-preAction
+                // write pre-action user code here
+                doSend();//GEN-LINE:|7-commandAction|20|115-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|21|7-postCommandAction
+        }//GEN-END:|7-commandAction|21|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|18|
-    //</editor-fold>//GEN-END:|7-commandAction|18|
+    }//GEN-BEGIN:|7-commandAction|22|
+    //</editor-fold>//GEN-END:|7-commandAction|22|
+
+
 
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|18-getter|0|18-preInit
@@ -219,22 +235,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener, Runnable {
     //</editor-fold>
     //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: formPreview ">//GEN-BEGIN:|14-getter|0|14-preInit
-    /**
-     * Returns an initiliazed instance of formPreview component.
-     * @return the initialized component instance
-     */
-    public Form getFormPreview() {
-        if (formPreview == null) {//GEN-END:|14-getter|0|14-preInit
-            // write pre-init user code here
-            formPreview = new Form("SMS-Den\u00FAncia", new Item[] { getTextFieldSMS() });//GEN-BEGIN:|14-getter|1|14-postInit
-            formPreview.addCommand(getExitCommand());
-            formPreview.setCommandListener(this);//GEN-END:|14-getter|1|14-postInit
-            // write post-init user code here
-        }//GEN-BEGIN:|14-getter|2|
-        return formPreview;
-    }
-    //</editor-fold>//GEN-END:|14-getter|2|
+
 
 
 
@@ -292,20 +293,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener, Runnable {
     }
     //</editor-fold>//GEN-END:|45-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textFieldSMS ">//GEN-BEGIN:|50-getter|0|50-preInit
-    /**
-     * Returns an initiliazed instance of textFieldSMS component.
-     * @return the initialized component instance
-     */
-    public TextField getTextFieldSMS() {
-        if (textFieldSMS == null) {//GEN-END:|50-getter|0|50-preInit
-            // write pre-init user code here
-            textFieldSMS = new TextField("", null, 32, TextField.ANY);//GEN-LINE:|50-getter|1|50-postInit
-            // write post-init user code here
-        }//GEN-BEGIN:|50-getter|2|
-        return textFieldSMS;
-    }
-    //</editor-fold>//GEN-END:|50-getter|2|
+
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: formMeio ">//GEN-BEGIN:|51-getter|0|51-preInit
     /**
@@ -350,7 +338,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener, Runnable {
     public Command getBackCommand() {
         if (backCommand == null) {//GEN-END:|57-getter|0|57-preInit
             // write pre-init user code here
-            backCommand = new Command("Back", Command.BACK, 0);//GEN-LINE:|57-getter|1|57-postInit
+            backCommand = new Command("Voltar", Command.BACK, 5);//GEN-LINE:|57-getter|1|57-postInit
             // write post-init user code here
         }//GEN-BEGIN:|57-getter|2|
         return backCommand;
@@ -498,7 +486,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener, Runnable {
     public Form getFormCarro() {
         if (formCarro == null) {//GEN-END:|74-getter|0|74-preInit
             // write pre-init user code here
-            formCarro = new Form("SMS-Den\u00FAncia", new Item[] { getTextFieldCarro() });//GEN-BEGIN:|74-getter|1|74-postInit
+            formCarro = new Form("SMS-Den\u00FAncia", new Item[] { getTextFieldCarro(), getStringItem() });//GEN-BEGIN:|74-getter|1|74-postInit
+            formCarro.addCommand(getOkCommand());
             formCarro.addCommand(getBackCommand());
             formCarro.setCommandListener(this);//GEN-END:|74-getter|1|74-postInit
             // write post-init user code here
@@ -521,6 +510,82 @@ public class HelloMIDlet extends MIDlet implements CommandListener, Runnable {
         return textFieldCarro;
     }
     //</editor-fold>//GEN-END:|98-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand ">//GEN-BEGIN:|99-getter|0|99-preInit
+    /**
+     * Returns an initiliazed instance of okCommand component.
+     * @return the initialized component instance
+     */
+    public Command getOkCommand() {
+        if (okCommand == null) {//GEN-END:|99-getter|0|99-preInit
+            // write pre-init user code here
+            okCommand = new Command("Ok", "Ok", Command.OK, 1);//GEN-LINE:|99-getter|1|99-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|99-getter|2|
+        return okCommand;
+    }
+    //</editor-fold>//GEN-END:|99-getter|2|
+    //</editor-fold>
+
+
+
+
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textBoxSMS ">//GEN-BEGIN:|107-getter|0|107-preInit
+    /**
+     * Returns an initiliazed instance of textBoxSMS component.
+     * @return the initialized component instance
+     */
+    public TextBox getTextBoxSMS() {
+        if (textBoxSMS == null) {//GEN-END:|107-getter|0|107-preInit
+            // write pre-init user code here
+            textBoxSMS = new TextBox("Acrescente informa\u00E7\u00F5es sobre o infrator:", "", 260, TextField.ANY);//GEN-BEGIN:|107-getter|1|107-postInit
+            textBoxSMS.addCommand(getEnviarCommand());
+            textBoxSMS.addCommand(getBackCommand());
+            textBoxSMS.setCommandListener(this);//GEN-END:|107-getter|1|107-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|107-getter|2|
+        return textBoxSMS;
+    }
+    //</editor-fold>//GEN-END:|107-getter|2|
+
+
+
+
+
+
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem ">//GEN-BEGIN:|112-getter|0|112-preInit
+    /**
+     * Returns an initiliazed instance of stringItem component.
+     * @return the initialized component instance
+     */
+    public StringItem getStringItem() {
+        if (stringItem == null) {//GEN-END:|112-getter|0|112-preInit
+            // write pre-init user code here
+            stringItem = new StringItem("Na pr\u00F3xima tela, descreva o infrator para ajudar os seguran\u00E7as a identific\u00E1-lo.", null);//GEN-LINE:|112-getter|1|112-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|112-getter|2|
+        return stringItem;
+    }
+    //</editor-fold>//GEN-END:|112-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: enviarCommand ">//GEN-BEGIN:|114-getter|0|114-preInit
+    /**
+     * Returns an initiliazed instance of enviarCommand component.
+     * @return the initialized component instance
+     */
+    public Command getEnviarCommand() {
+        if (enviarCommand == null) {//GEN-END:|114-getter|0|114-preInit
+            // write pre-init user code here
+            enviarCommand = new Command("Enviar", "Enviar", Command.OK, 1);//GEN-LINE:|114-getter|1|114-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|114-getter|2|
+        return enviarCommand;
+    }
+    //</editor-fold>//GEN-END:|114-getter|2|
+
+
 
 
 
@@ -621,6 +686,41 @@ public class HelloMIDlet extends MIDlet implements CommandListener, Runnable {
             }
         }
     }
+
+    public void doSend() {
+        class Sender implements Runnable {
+            public void run() {
+                try {
+                    //        String denuncia = tipoDenuncia + " na linha " + linha.getText() + ". ";
+                    //        if(dentro.isChecked()) {
+                    //            denuncia += "Trem sentido " + sentido.getText();
+                    //            denuncia += " próx. da estação ";
+                    //        } else {
+                    //            denuncia += "Estação ";
+                    //        }
+                    //        denuncia += estacao.getText() + ".";
+                    //        if(getTextFieldCarro().getString().length()>0) {
+                    //            denuncia += " Carro " + getTextFieldCarro().getString() + ".";
+                    //        }
+                    String addr = "sms://" + "12345677";
+                    MessageConnection conn = (MessageConnection) Connector.open(addr);
+                    TextMessage msg = (TextMessage) conn.newMessage(MessageConnection.TEXT_MESSAGE);
+                    msg.setPayloadText("esse tem acentuação");
+                    conn.send(msg);
+                } catch (IOException ex) {
+                    //getTextFieldSMS().setString(ex.getMessage());
+                    ex.printStackTrace();
+                }
+            }
+        }
+        Thread t = new Thread(new Sender());
+        t.start();
+
+
+
+
+    }
+
 
     /**
      * Recupera o índice do elemento selecionado em um <code>ChoiceGroup</code>.
