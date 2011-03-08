@@ -102,7 +102,7 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
     private Command backCommand;
     private Command okCommand;
     private Command enviarCommand;
-    private Command exitCommand1;
+    private Command aboutCommand;
     private Form formTipo;
     private ChoiceGroup choiceGroupTipo;
     private Form formMeio;
@@ -122,6 +122,7 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
     private Alert alertOk;
     private Alert alertErro;
     private WaitScreen waitScreenEnviando;
+    private Alert alertSobre;
     private SimpleCancellableTask enviarSmsTask;
     //</editor-fold>//GEN-END:|fields|0|
 
@@ -241,37 +242,41 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
                 // write pre-action user code here
                 doBack();//GEN-LINE:|7-commandAction|16|91-postAction
                         // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|17|63-preAction
+            }//GEN-BEGIN:|7-commandAction|17|162-preAction
         } else if (displayable == formTipo) {
-            if (command == exitCommand) {//GEN-END:|7-commandAction|17|63-preAction
+            if (command == aboutCommand) {//GEN-END:|7-commandAction|17|162-preAction
                 // write pre-action user code here
-                exitMIDlet();//GEN-LINE:|7-commandAction|18|63-postAction
+                switchDisplayable(getAlertSobre(), getFormTipo());//GEN-LINE:|7-commandAction|18|162-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|19|118-preAction
+            } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|19|63-preAction
+                // write pre-action user code here
+                exitMIDlet();//GEN-LINE:|7-commandAction|20|63-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|21|118-preAction
         } else if (displayable == textBoxSMS) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|19|118-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|21|118-preAction
                 // write pre-action user code here
-                doBack();//GEN-LINE:|7-commandAction|20|118-postAction
+                doBack();//GEN-LINE:|7-commandAction|22|118-postAction
                 // write post-action user code here
-            } else if (command == enviarCommand) {//GEN-LINE:|7-commandAction|21|115-preAction
+            } else if (command == enviarCommand) {//GEN-LINE:|7-commandAction|23|115-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getWaitScreenEnviando());//GEN-LINE:|7-commandAction|22|115-postAction
+                switchDisplayable(null, getWaitScreenEnviando());//GEN-LINE:|7-commandAction|24|115-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|23|150-preAction
+            }//GEN-BEGIN:|7-commandAction|25|150-preAction
         } else if (displayable == waitScreenEnviando) {
-            if (command == WaitScreen.FAILURE_COMMAND) {//GEN-END:|7-commandAction|23|150-preAction
+            if (command == WaitScreen.FAILURE_COMMAND) {//GEN-END:|7-commandAction|25|150-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getAlertErro());//GEN-LINE:|7-commandAction|24|150-postAction
+                switchDisplayable(null, getAlertErro());//GEN-LINE:|7-commandAction|26|150-postAction
                 // write post-action user code here
-            } else if (command == WaitScreen.SUCCESS_COMMAND) {//GEN-LINE:|7-commandAction|25|149-preAction
+            } else if (command == WaitScreen.SUCCESS_COMMAND) {//GEN-LINE:|7-commandAction|27|149-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getAlertOk());//GEN-LINE:|7-commandAction|26|149-postAction
+                switchDisplayable(null, getAlertOk());//GEN-LINE:|7-commandAction|28|149-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|27|7-postCommandAction
-        }//GEN-END:|7-commandAction|27|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|29|7-postCommandAction
+        }//GEN-END:|7-commandAction|29|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|28|
-    //</editor-fold>//GEN-END:|7-commandAction|28|
+    }//GEN-BEGIN:|7-commandAction|30|
+    //</editor-fold>//GEN-END:|7-commandAction|30|
 
 
 
@@ -321,6 +326,7 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
             // write pre-init user code here
             formTipo = new Form("SMS-Den\u00FAncia", new Item[] { getChoiceGroupTipo() });//GEN-BEGIN:|44-getter|1|44-postInit
             formTipo.addCommand(getExitCommand());
+            formTipo.addCommand(getAboutCommand());
             formTipo.setCommandListener(this);//GEN-END:|44-getter|1|44-postInit
             // write post-init user code here
         }//GEN-BEGIN:|44-getter|2|
@@ -651,7 +657,7 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
     public Alert getAlertOk() {
         if (alertOk == null) {//GEN-END:|137-getter|0|137-preInit
             // write pre-init user code here
-            alertOk = new Alert("SMS-Den\u00FAncia", "Den\u00FAncia enviada. Obrigado!", null, null);//GEN-BEGIN:|137-getter|1|137-postInit
+            alertOk = new Alert("SMS-Den\u00FAncia", "Den\u00FAncia enviada. Obrigado!", null, AlertType.CONFIRMATION);//GEN-BEGIN:|137-getter|1|137-postInit
             alertOk.addCommand(getExitCommand());
             alertOk.setCommandListener(this);
             alertOk.setTimeout(Alert.FOREVER);//GEN-END:|137-getter|1|137-postInit
@@ -669,7 +675,7 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
     public Alert getAlertErro() {
         if (alertErro == null) {//GEN-END:|138-getter|0|138-preInit
             // write pre-init user code here
-            alertErro = new Alert("Erro", "N\u00E3o foi poss\u00EDvel enviar SMS. Escolha OK para tentar novamente.", null, null);//GEN-BEGIN:|138-getter|1|138-postInit
+            alertErro = new Alert("Erro", "N\u00E3o foi poss\u00EDvel enviar SMS. Escolha OK para tentar novamente.", null, AlertType.ERROR);//GEN-BEGIN:|138-getter|1|138-postInit
             alertErro.setTimeout(Alert.FOREVER);//GEN-END:|138-getter|1|138-postInit
             // write post-init user code here
         }//GEN-BEGIN:|138-getter|2|
@@ -724,21 +730,42 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
         return enviarSmsTask;
     }
     //</editor-fold>//GEN-END:|151-getter|3|
+    //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand1 ">//GEN-BEGIN:|156-getter|0|156-preInit
+
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: aboutCommand ">//GEN-BEGIN:|161-getter|0|161-preInit
     /**
-     * Returns an initiliazed instance of exitCommand1 component.
+     * Returns an initiliazed instance of aboutCommand component.
      * @return the initialized component instance
      */
-    public Command getExitCommand1() {
-        if (exitCommand1 == null) {//GEN-END:|156-getter|0|156-preInit
+    public Command getAboutCommand() {
+        if (aboutCommand == null) {//GEN-END:|161-getter|0|161-preInit
             // write pre-init user code here
-            exitCommand1 = new Command("Exit", Command.EXIT, 0);//GEN-LINE:|156-getter|1|156-postInit
+            aboutCommand = new Command("Sobre", Command.ITEM, 10);//GEN-LINE:|161-getter|1|161-postInit
             // write post-init user code here
-        }//GEN-BEGIN:|156-getter|2|
-        return exitCommand1;
+        }//GEN-BEGIN:|161-getter|2|
+        return aboutCommand;
     }
-    //</editor-fold>//GEN-END:|156-getter|2|
+    //</editor-fold>//GEN-END:|161-getter|2|
+    //</editor-fold>
+    //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: alertSobre ">//GEN-BEGIN:|160-getter|0|160-preInit
+    /**
+     * Returns an initiliazed instance of alertSobre component.
+     * @return the initialized component instance
+     */
+    public Alert getAlertSobre() {
+        if (alertSobre == null) {//GEN-END:|160-getter|0|160-preInit
+            // write pre-init user code here
+            alertSobre = new Alert("SMS-Den\u00FAncia", "Este programa \u00E9 software livre. C\u00F3digo idpson\u00EDvel em https://github.com/chester/SMS-Denuncia", null, AlertType.INFO);//GEN-BEGIN:|160-getter|1|160-postInit
+            alertSobre.setTimeout(Alert.FOREVER);//GEN-END:|160-getter|1|160-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|160-getter|2|
+        return alertSobre;
+    }
+    //</editor-fold>//GEN-END:|160-getter|2|
 
 
 
