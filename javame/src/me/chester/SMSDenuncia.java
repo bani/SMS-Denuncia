@@ -30,6 +30,8 @@ import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
 import javax.wireless.messaging.MessageConnection;
 import javax.wireless.messaging.TextMessage;
+import org.netbeans.microedition.lcdui.WaitScreen;
+import org.netbeans.microedition.util.SimpleCancellableTask;
 
 /**
  * Midlet que compõe um SMS representando uma denúncia de irregularidade na
@@ -100,6 +102,7 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
     private Command backCommand;
     private Command okCommand;
     private Command enviarCommand;
+    private Command exitCommand1;
     private Form formTipo;
     private ChoiceGroup choiceGroupTipo;
     private Form formMeio;
@@ -116,6 +119,10 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
     private TextField textFieldCarro;
     private StringItem stringItem;
     private TextBox textBoxSMS;
+    private Alert alertOk;
+    private Alert alertErro;
+    private WaitScreen waitScreenEnviando;
+    private SimpleCancellableTask enviarSmsTask;
     //</editor-fold>//GEN-END:|fields|0|
 
     /**
@@ -189,66 +196,82 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
      */
     public void commandAction(Command command, Displayable displayable) {//GEN-END:|7-commandAction|0|7-preCommandAction
         // write pre-action user code here
-        if (displayable == formCarro) {//GEN-BEGIN:|7-commandAction|1|92-preAction
-            if (command == backCommand) {//GEN-END:|7-commandAction|1|92-preAction
+        if (displayable == alertOk) {//GEN-BEGIN:|7-commandAction|1|158-preAction
+            if (command == exitCommand) {//GEN-END:|7-commandAction|1|158-preAction
                 // write pre-action user code here
-                doBack();//GEN-LINE:|7-commandAction|2|92-postAction
-                        // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|3|125-preAction
-                // write pre-action user code here
-                doMontaSMS();//GEN-LINE:|7-commandAction|4|125-postAction
+                exitMIDlet();//GEN-LINE:|7-commandAction|2|158-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|5|81-preAction
+            }//GEN-BEGIN:|7-commandAction|3|92-preAction
+        } else if (displayable == formCarro) {
+            if (command == backCommand) {//GEN-END:|7-commandAction|3|92-preAction
+                // write pre-action user code here
+                doBack();//GEN-LINE:|7-commandAction|4|92-postAction
+                        // write post-action user code here
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|5|125-preAction
+                // write pre-action user code here
+                doMontaSMS();//GEN-LINE:|7-commandAction|6|125-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|7|81-preAction
         } else if (displayable == formDentro) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|5|81-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|7|81-preAction
                 // write pre-action user code here
-                doBack();//GEN-LINE:|7-commandAction|6|81-postAction
+                doBack();//GEN-LINE:|7-commandAction|8|81-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|7|90-preAction
+            }//GEN-BEGIN:|7-commandAction|9|90-preAction
         } else if (displayable == formEstacao) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|7|90-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|9|90-preAction
                 // write pre-action user code here
-                doBack();//GEN-LINE:|7-commandAction|8|90-postAction
+                doBack();//GEN-LINE:|7-commandAction|10|90-postAction
                         // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|9|67-preAction
+            }//GEN-BEGIN:|7-commandAction|11|67-preAction
         } else if (displayable == formLinha) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|9|67-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|11|67-preAction
                 // write pre-action user code here
-                doBack();//GEN-LINE:|7-commandAction|10|67-postAction
+                doBack();//GEN-LINE:|7-commandAction|12|67-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|11|58-preAction
+            }//GEN-BEGIN:|7-commandAction|13|58-preAction
         } else if (displayable == formMeio) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|11|58-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|13|58-preAction
                 // write pre-action user code here
-                doBack();//GEN-LINE:|7-commandAction|12|58-postAction
+                doBack();//GEN-LINE:|7-commandAction|14|58-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|13|91-preAction
+            }//GEN-BEGIN:|7-commandAction|15|91-preAction
         } else if (displayable == formSentido) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|13|91-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|15|91-preAction
                 // write pre-action user code here
-                doBack();//GEN-LINE:|7-commandAction|14|91-postAction
+                doBack();//GEN-LINE:|7-commandAction|16|91-postAction
                         // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|15|63-preAction
+            }//GEN-BEGIN:|7-commandAction|17|63-preAction
         } else if (displayable == formTipo) {
-            if (command == exitCommand) {//GEN-END:|7-commandAction|15|63-preAction
+            if (command == exitCommand) {//GEN-END:|7-commandAction|17|63-preAction
                 // write pre-action user code here
-                exitMIDlet();//GEN-LINE:|7-commandAction|16|63-postAction
+                exitMIDlet();//GEN-LINE:|7-commandAction|18|63-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|17|118-preAction
+            }//GEN-BEGIN:|7-commandAction|19|118-preAction
         } else if (displayable == textBoxSMS) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|17|118-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|19|118-preAction
                 // write pre-action user code here
-                doBack();//GEN-LINE:|7-commandAction|18|118-postAction
+                doBack();//GEN-LINE:|7-commandAction|20|118-postAction
                 // write post-action user code here
-            } else if (command == enviarCommand) {//GEN-LINE:|7-commandAction|19|115-preAction
+            } else if (command == enviarCommand) {//GEN-LINE:|7-commandAction|21|115-preAction
                 // write pre-action user code here
-                doSend();//GEN-LINE:|7-commandAction|20|115-postAction
+                switchDisplayable(null, getWaitScreenEnviando());//GEN-LINE:|7-commandAction|22|115-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|21|7-postCommandAction
-        }//GEN-END:|7-commandAction|21|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|23|150-preAction
+        } else if (displayable == waitScreenEnviando) {
+            if (command == WaitScreen.FAILURE_COMMAND) {//GEN-END:|7-commandAction|23|150-preAction
+                // write pre-action user code here
+                switchDisplayable(null, getAlertErro());//GEN-LINE:|7-commandAction|24|150-postAction
+                // write post-action user code here
+            } else if (command == WaitScreen.SUCCESS_COMMAND) {//GEN-LINE:|7-commandAction|25|149-preAction
+                // write pre-action user code here
+                switchDisplayable(null, getAlertOk());//GEN-LINE:|7-commandAction|26|149-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|27|7-postCommandAction
+        }//GEN-END:|7-commandAction|27|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|22|
-    //</editor-fold>//GEN-END:|7-commandAction|22|
+    }//GEN-BEGIN:|7-commandAction|28|
+    //</editor-fold>//GEN-END:|7-commandAction|28|
 
 
 
@@ -620,6 +643,103 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
     }
     //</editor-fold>//GEN-END:|114-getter|2|
 
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: alertOk ">//GEN-BEGIN:|137-getter|0|137-preInit
+    /**
+     * Returns an initiliazed instance of alertOk component.
+     * @return the initialized component instance
+     */
+    public Alert getAlertOk() {
+        if (alertOk == null) {//GEN-END:|137-getter|0|137-preInit
+            // write pre-init user code here
+            alertOk = new Alert("SMS-Den\u00FAncia", "Den\u00FAncia enviada. Obrigado!", null, null);//GEN-BEGIN:|137-getter|1|137-postInit
+            alertOk.addCommand(getExitCommand());
+            alertOk.setCommandListener(this);
+            alertOk.setTimeout(Alert.FOREVER);//GEN-END:|137-getter|1|137-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|137-getter|2|
+        return alertOk;
+    }
+    //</editor-fold>//GEN-END:|137-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: alertErro ">//GEN-BEGIN:|138-getter|0|138-preInit
+    /**
+     * Returns an initiliazed instance of alertErro component.
+     * @return the initialized component instance
+     */
+    public Alert getAlertErro() {
+        if (alertErro == null) {//GEN-END:|138-getter|0|138-preInit
+            // write pre-init user code here
+            alertErro = new Alert("Erro", "N\u00E3o foi poss\u00EDvel enviar SMS. Escolha OK para tentar novamente.", null, null);//GEN-BEGIN:|138-getter|1|138-postInit
+            alertErro.setTimeout(Alert.FOREVER);//GEN-END:|138-getter|1|138-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|138-getter|2|
+        return alertErro;
+    }
+    //</editor-fold>//GEN-END:|138-getter|2|
+    //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: waitScreenEnviando ">//GEN-BEGIN:|146-getter|0|146-preInit
+    /**
+     * Returns an initiliazed instance of waitScreenEnviando component.
+     * @return the initialized component instance
+     */
+    public WaitScreen getWaitScreenEnviando() {
+        if (waitScreenEnviando == null) {//GEN-END:|146-getter|0|146-preInit
+            // write pre-init user code here
+            waitScreenEnviando = new WaitScreen(getDisplay());//GEN-BEGIN:|146-getter|1|146-postInit
+            waitScreenEnviando.setTitle("SMS-Den\u00FAncia");
+            waitScreenEnviando.setCommandListener(this);
+            waitScreenEnviando.setText("Enviando...");
+            waitScreenEnviando.setTask(getEnviarSmsTask());//GEN-END:|146-getter|1|146-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|146-getter|2|
+        return waitScreenEnviando;
+    }
+    //</editor-fold>//GEN-END:|146-getter|2|
+    //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: enviarSmsTask ">//GEN-BEGIN:|151-getter|0|151-preInit
+    /**
+     * Returns an initiliazed instance of enviarSmsTask component.
+     * @return the initialized component instance
+     */
+    public SimpleCancellableTask getEnviarSmsTask() {
+        if (enviarSmsTask == null) {//GEN-END:|151-getter|0|151-preInit
+            // write pre-init user code here
+            enviarSmsTask = new SimpleCancellableTask();//GEN-BEGIN:|151-getter|1|151-execute
+            enviarSmsTask.setExecutable(new org.netbeans.microedition.util.Executable() {
+                public void execute() throws Exception {//GEN-END:|151-getter|1|151-execute
+                    String addr = "sms://" + getTelefoneDestino();
+                    if (TELEFONE_DEBUG != null) {
+                        addr = "sms://" + TELEFONE_DEBUG;
+                    }
+                    MessageConnection conn = (MessageConnection) Connector.open(addr);
+                    TextMessage msg = (TextMessage) conn.newMessage(MessageConnection.TEXT_MESSAGE);
+                    msg.setPayloadText(getTextBoxSMS().getString());
+                    conn.send(msg);
+                }//GEN-BEGIN:|151-getter|2|151-postInit
+            });//GEN-END:|151-getter|2|151-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|151-getter|3|
+        return enviarSmsTask;
+    }
+    //</editor-fold>//GEN-END:|151-getter|3|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand1 ">//GEN-BEGIN:|156-getter|0|156-preInit
+    /**
+     * Returns an initiliazed instance of exitCommand1 component.
+     * @return the initialized component instance
+     */
+    public Command getExitCommand1() {
+        if (exitCommand1 == null) {//GEN-END:|156-getter|0|156-preInit
+            // write pre-init user code here
+            exitCommand1 = new Command("Exit", Command.EXIT, 0);//GEN-LINE:|156-getter|1|156-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|156-getter|2|
+        return exitCommand1;
+    }
+    //</editor-fold>//GEN-END:|156-getter|2|
+
 
 
 
@@ -676,7 +796,9 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
      */
     public void run() {
         while (true) {
-            doAutoForward();
+            if (!midletPaused) {
+                doAutoForward();
+            }
             try {
                 Thread.sleep(200);
             } catch (InterruptedException ex) {
@@ -744,28 +866,6 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
 
         getTextBoxSMS().setString(denuncia);
         setCurrent(getTextBoxSMS());
-    }
-
-    public void doSend() {
-        class Sender implements Runnable {
-            public void run() {
-                try {
-                    String addr = "sms://" + getTelefoneDestino();
-                    if (TELEFONE_DEBUG != null) {
-                        addr = "sms://" + TELEFONE_DEBUG;
-                    }
-                    MessageConnection conn = (MessageConnection) Connector.open(addr);
-                    TextMessage msg = (TextMessage) conn.newMessage(MessageConnection.TEXT_MESSAGE);
-                    msg.setPayloadText(getTextBoxSMS().getString());
-                    conn.send(msg);
-                } catch (IOException ex) {
-                    //getTextFieldSMS().setString(ex.getMessage());
-                    ex.printStackTrace();
-                }
-            }
-        }
-        Thread t = new Thread(new Sender());
-        t.start();
     }
 
     private String getTelefoneDestino() {
