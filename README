@@ -2,7 +2,9 @@ Aplicativo mobile que visa auxiliar no envio do SMS-Denúncia, serviço disponí
 
 Com alguns cliques o usuário seleciona o tipo da denúncia, linha, estação e sentido do trem, gerando automaticamente um texto com as primeiras informações necessárias para o SMS. Então basta completar com uma descrição do infrator e enviar.
 
-O SMS-Denúncia está disponível no Android Market - http://bit.ly/smsdenuncia (QR Code dentro da pasta img).
+A versão Android está disponível no Android Market - http://bit.ly/smsdenuncia (QR Code dentro da pasta img).
+
+A versão Java ME está disponível em http://chester.blog.br/smsdenuncia (o link direciona para o arquivo .jad. O arquivo .jar está em http://chester.blog.br/smsdenuncia/SMS-Denuncia.jar)
 
 Este software está sob a licença MIT. Porém, para fins de praticidade na distribuição mobile, não é necessário incluir a licença no binário, basta incluir um link para https://github.com/bani/SMS-Denuncia/ (como atualmente existe no menu "Sobre").
 
@@ -11,7 +13,8 @@ KNOWN BUGS:
 Nenhum
 
 Créditos:
-Desenvolvido por Vanessa Sabino - http://baniverso.com
+Versão original (Android) desenvolvida por Vanessa Sabino - http://baniverso.com
+Versão Java ME desenvolvida por Chester - http://chester.blog.br
 Foto do Feature Graphic do Market por Georgez (CC-by) - http://pt.wikipedia.org/wiki/Estação_Trianon-Masp
 
 Agradecimentos:
