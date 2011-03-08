@@ -52,7 +52,7 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
 
     private static final int DENTRO_ESTACAO = 1;
 
-    private static final String TELEFONE_TREM = "+551171504949";
+    private static final String TELEFONE_CPTM = "+551171504949";
 
     private static final String TELEFONE_METRO = "+551173332252";
 
@@ -896,8 +896,8 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
     }
 
     private String getTelefoneDestino() {
-        if (getSelectedIndex(getChoiceGroupDentro()) == DENTRO_TREM) {
-            return TELEFONE_TREM;
+        if (getSelectedIndex(getChoiceGroupMeio()) == MEIO_CPTM) {
+            return TELEFONE_CPTM;
         } else {
             return TELEFONE_METRO;
         }
