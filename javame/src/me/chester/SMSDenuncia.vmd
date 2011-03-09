@@ -17,11 +17,11 @@
                     <Component componentID="4" typeID="C#MobileDeviceResumeEventSource"/>
                 </Component>
                 <Component componentID="5" typeID="C#Display"/>
-                <Component componentID="86" typeID="C#CallPoint">
-                    <Property name="accessCode" typeID="P#javacode" value="VdoBack();"/>
-                </Component>
                 <Component componentID="133" typeID="C#CallPoint">
                     <Property name="accessCode" typeID="P#javacode" value="VdoMontaSMS();"/>
+                </Component>
+                <Component componentID="86" typeID="C#CallPoint">
+                    <Property name="accessCode" typeID="P#javacode" value="VdoBack();"/>
                 </Component>
             </Component>
             <Component componentID="6" typeID="C#ControllersCategory">
@@ -35,6 +35,25 @@
                     <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
                     <Property name="label" typeID="Pjava.lang.String" value="VSair"/>
                     <Property name="type" typeID="Pint" value="V7"/>
+                </Component>
+                <Component componentID="147" typeID="C#WaitScreenSuccessCommand">
+                    <Property name="label" typeID="Pjava.lang.String" value="VSuccess"/>
+                    <Property name="type" typeID="Pint" value="V4"/>
+                    <Property name="priority" typeID="Pint" value="V0"/>
+                    <Property name="ordinary" typeID="Pboolean" value="Vfalse"/>
+                </Component>
+                <Component componentID="148" typeID="C#WaitScreenFailureCommand">
+                    <Property name="label" typeID="Pjava.lang.String" value="VFailure"/>
+                    <Property name="type" typeID="Pint" value="V4"/>
+                    <Property name="priority" typeID="Pint" value="V0"/>
+                    <Property name="ordinary" typeID="Pboolean" value="Vfalse"/>
+                </Component>
+                <Component componentID="161" typeID="Cjavax.microedition.lcdui.Command">
+                    <Property name="instanceName" typeID="Pjava.lang.String" value="VaboutCommand"/>
+                    <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
+                    <Property name="label" typeID="Pjava.lang.String" value="VSobre"/>
+                    <Property name="type" typeID="Pint" value="V8"/>
+                    <Property name="priority" typeID="Pint" value="V10"/>
                 </Component>
                 <Component componentID="57" typeID="Cjavax.microedition.lcdui.Command">
                     <Property name="instanceName" typeID="Pjava.lang.String" value="VbackCommand"/>
@@ -59,27 +78,72 @@
                     <Property name="type" typeID="Pint" value="V4"/>
                     <Property name="priority" typeID="Pint" value="V1"/>
                 </Component>
-                <Component componentID="147" typeID="C#WaitScreenSuccessCommand">
-                    <Property name="label" typeID="Pjava.lang.String" value="VSuccess"/>
-                    <Property name="type" typeID="Pint" value="V4"/>
-                    <Property name="priority" typeID="Pint" value="V0"/>
-                    <Property name="ordinary" typeID="Pboolean" value="Vfalse"/>
-                </Component>
-                <Component componentID="148" typeID="C#WaitScreenFailureCommand">
-                    <Property name="label" typeID="Pjava.lang.String" value="VFailure"/>
-                    <Property name="type" typeID="Pint" value="V4"/>
-                    <Property name="priority" typeID="Pint" value="V0"/>
-                    <Property name="ordinary" typeID="Pboolean" value="Vfalse"/>
-                </Component>
-                <Component componentID="161" typeID="Cjavax.microedition.lcdui.Command">
-                    <Property name="instanceName" typeID="Pjava.lang.String" value="VaboutCommand"/>
-                    <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
-                    <Property name="label" typeID="Pjava.lang.String" value="VSobre"/>
-                    <Property name="type" typeID="Pint" value="V8"/>
-                    <Property name="priority" typeID="Pint" value="V10"/>
-                </Component>
             </Component>
             <Component componentID="10" typeID="C#DisplayablesCategory">
+                <Component componentID="137" typeID="Cjavax.microedition.lcdui.Alert">
+                    <Property name="instanceName" typeID="Pjava.lang.String" value="ValertOk"/>
+                    <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
+                    <Property name="commands" typeID="1C#CommandEventSource" value="A1:4_R158"/>
+                    <Property name="title" typeID="Pjava.lang.String" value="VSMS-Denúncia"/>
+                    <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
+                    <Property name="string" typeID="Pjava.lang.String" value="VDenúncia enviada. Obrigado!"/>
+                    <Property name="timeout" typeID="Pint" value="V-2"/>
+                    <Property name="type" typeID="Ejavax.microedition.lcdui.AlertType" value="ECONFIRMATION"/>
+                    <Component componentID="158" typeID="C#CommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R159"/>
+                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R137"/>
+                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R18"/>
+                        <Component componentID="159" typeID="C#ExitMidletEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R158"/>
+                            <Property name="mobileDevice" typeID="C#MobileDevice" value="R2"/>
+                        </Component>
+                    </Component>
+                </Component>
+                <Component componentID="138" typeID="Cjavax.microedition.lcdui.Alert">
+                    <Property name="instanceName" typeID="Pjava.lang.String" value="ValertErro"/>
+                    <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
+                    <Property name="title" typeID="Pjava.lang.String" value="VErro"/>
+                    <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
+                    <Property name="string" typeID="Pjava.lang.String" value="VNão foi possível enviar SMS. Escolha OK para tentar novamente."/>
+                    <Property name="timeout" typeID="Pint" value="V-2"/>
+                    <Property name="type" typeID="Ejavax.microedition.lcdui.AlertType" value="EERROR"/>
+                </Component>
+                <Component componentID="146" typeID="Corg.netbeans.microedition.lcdui.WaitScreen">
+                    <Property name="instanceName" typeID="Pjava.lang.String" value="VwaitScreenEnviando"/>
+                    <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
+                    <Property name="commands" typeID="1C#CommandEventSource" value="A2:4_R1494_R150"/>
+                    <Property name="title" typeID="Pjava.lang.String" value="VSMS-Denúncia"/>
+                    <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
+                    <Property name="text" typeID="Pjava.lang.String" value="VEnviando..."/>
+                    <Property name="task" typeID="Corg.netbeans.microedition.util.CancellableTask" value="R151"/>
+                    <Component componentID="149" typeID="C#WaitScreenSuccessCommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R155"/>
+                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R146"/>
+                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R147"/>
+                        <Component componentID="155" typeID="C#SwitchDisplayableEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R149"/>
+                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R137"/>
+                        </Component>
+                    </Component>
+                    <Component componentID="150" typeID="C#WaitScreenFailureCommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R154"/>
+                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R146"/>
+                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R148"/>
+                        <Component componentID="154" typeID="C#SwitchDisplayableEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R150"/>
+                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R138"/>
+                        </Component>
+                    </Component>
+                </Component>
+                <Component componentID="160" typeID="Cjavax.microedition.lcdui.Alert">
+                    <Property name="instanceName" typeID="Pjava.lang.String" value="ValertSobre"/>
+                    <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
+                    <Property name="title" typeID="Pjava.lang.String" value="VSMS-Denúncia"/>
+                    <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
+                    <Property name="string" typeID="Pjava.lang.String" value="VEste programa é software livre. Código disponível em https://github.com/chester/SMS-Denuncia"/>
+                    <Property name="timeout" typeID="Pint" value="V-2"/>
+                    <Property name="type" typeID="Ejavax.microedition.lcdui.AlertType" value="EINFO"/>
+                </Component>
                 <Component componentID="44" typeID="Cjavax.microedition.lcdui.Form">
                     <Property name="instanceName" typeID="Pjava.lang.String" value="VformTipo"/>
                     <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
@@ -87,6 +151,16 @@
                     <Property name="title" typeID="Pjava.lang.String" value="VSMS-Denúncia"/>
                     <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
                     <Property name="items" typeID="1Cjavax.microedition.lcdui.Item" value="A1:3_R45"/>
+                    <Component componentID="162" typeID="C#CommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R163"/>
+                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R44"/>
+                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R161"/>
+                        <Component componentID="163" typeID="C#SwitchDisplayableEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R162"/>
+                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R44"/>
+                            <Property name="alert" typeID="Cjavax.microedition.lcdui.Alert" value="R160"/>
+                        </Component>
+                    </Component>
                     <Component componentID="45" typeID="Cjavax.microedition.lcdui.ChoiceGroup">
                         <Property name="instanceName" typeID="Pjava.lang.String" value="VchoiceGroupTipo"/>
                         <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
@@ -118,16 +192,6 @@
                         <Component componentID="96" typeID="C#ExitMidletEventHandler">
                             <Property name="eventSource" typeID="C#EventSource" value="R63"/>
                             <Property name="mobileDevice" typeID="C#MobileDevice" value="R2"/>
-                        </Component>
-                    </Component>
-                    <Component componentID="162" typeID="C#CommandEventSource">
-                        <Property name="eventHandler" typeID="C#EventHandler" value="R163"/>
-                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R44"/>
-                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R161"/>
-                        <Component componentID="163" typeID="C#SwitchDisplayableEventHandler">
-                            <Property name="eventSource" typeID="C#EventSource" value="R162"/>
-                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R44"/>
-                            <Property name="alert" typeID="Cjavax.microedition.lcdui.Alert" value="R160"/>
                         </Component>
                     </Component>
                 </Component>
@@ -309,15 +373,6 @@
                     <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
                     <Property name="string" typeID="Pjava.lang.String" value="V"/>
                     <Property name="maxSize" typeID="Pint" value="V260"/>
-                    <Component componentID="115" typeID="C#CommandEventSource">
-                        <Property name="eventHandler" typeID="C#EventHandler" value="R152"/>
-                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R107"/>
-                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R114"/>
-                        <Component componentID="152" typeID="C#SwitchDisplayableEventHandler">
-                            <Property name="eventSource" typeID="C#EventSource" value="R115"/>
-                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R146"/>
-                        </Component>
-                    </Component>
                     <Component componentID="118" typeID="C#CommandEventSource">
                         <Property name="eventHandler" typeID="C#EventHandler" value="R119"/>
                         <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R107"/>
@@ -327,70 +382,15 @@
                             <Property name="callPoint" typeID="C#CallPoint" value="R86"/>
                         </Component>
                     </Component>
-                </Component>
-                <Component componentID="137" typeID="Cjavax.microedition.lcdui.Alert">
-                    <Property name="instanceName" typeID="Pjava.lang.String" value="ValertOk"/>
-                    <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
-                    <Property name="commands" typeID="1C#CommandEventSource" value="A1:4_R158"/>
-                    <Property name="title" typeID="Pjava.lang.String" value="VSMS-Denúncia"/>
-                    <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
-                    <Property name="string" typeID="Pjava.lang.String" value="VDenúncia enviada. Obrigado!"/>
-                    <Property name="timeout" typeID="Pint" value="V-2"/>
-                    <Property name="type" typeID="Ejavax.microedition.lcdui.AlertType" value="ECONFIRMATION"/>
-                    <Component componentID="158" typeID="C#CommandEventSource">
-                        <Property name="eventHandler" typeID="C#EventHandler" value="R159"/>
-                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R137"/>
-                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R18"/>
-                        <Component componentID="159" typeID="C#ExitMidletEventHandler">
-                            <Property name="eventSource" typeID="C#EventSource" value="R158"/>
-                            <Property name="mobileDevice" typeID="C#MobileDevice" value="R2"/>
+                    <Component componentID="115" typeID="C#CommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R152"/>
+                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R107"/>
+                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R114"/>
+                        <Component componentID="152" typeID="C#SwitchDisplayableEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R115"/>
+                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R146"/>
                         </Component>
                     </Component>
-                </Component>
-                <Component componentID="138" typeID="Cjavax.microedition.lcdui.Alert">
-                    <Property name="instanceName" typeID="Pjava.lang.String" value="ValertErro"/>
-                    <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
-                    <Property name="title" typeID="Pjava.lang.String" value="VErro"/>
-                    <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
-                    <Property name="string" typeID="Pjava.lang.String" value="VNão foi possível enviar SMS. Escolha OK para tentar novamente."/>
-                    <Property name="timeout" typeID="Pint" value="V-2"/>
-                    <Property name="type" typeID="Ejavax.microedition.lcdui.AlertType" value="EERROR"/>
-                </Component>
-                <Component componentID="146" typeID="Corg.netbeans.microedition.lcdui.WaitScreen">
-                    <Property name="instanceName" typeID="Pjava.lang.String" value="VwaitScreenEnviando"/>
-                    <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
-                    <Property name="commands" typeID="1C#CommandEventSource" value="A2:4_R1494_R150"/>
-                    <Property name="title" typeID="Pjava.lang.String" value="VSMS-Denúncia"/>
-                    <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
-                    <Property name="text" typeID="Pjava.lang.String" value="VEnviando..."/>
-                    <Property name="task" typeID="Corg.netbeans.microedition.util.CancellableTask" value="R151"/>
-                    <Component componentID="149" typeID="C#WaitScreenSuccessCommandEventSource">
-                        <Property name="eventHandler" typeID="C#EventHandler" value="R155"/>
-                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R146"/>
-                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R147"/>
-                        <Component componentID="155" typeID="C#SwitchDisplayableEventHandler">
-                            <Property name="eventSource" typeID="C#EventSource" value="R149"/>
-                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R137"/>
-                        </Component>
-                    </Component>
-                    <Component componentID="150" typeID="C#WaitScreenFailureCommandEventSource">
-                        <Property name="eventHandler" typeID="C#EventHandler" value="R154"/>
-                        <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R146"/>
-                        <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R148"/>
-                        <Component componentID="154" typeID="C#SwitchDisplayableEventHandler">
-                            <Property name="eventSource" typeID="C#EventSource" value="R150"/>
-                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R138"/>
-                        </Component>
-                    </Component>
-                </Component>
-                <Component componentID="160" typeID="Cjavax.microedition.lcdui.Alert">
-                    <Property name="instanceName" typeID="Pjava.lang.String" value="ValertSobre"/>
-                    <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
-                    <Property name="title" typeID="Pjava.lang.String" value="VSMS-Denúncia"/>
-                    <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
-                    <Property name="string" typeID="Pjava.lang.String" value="VEste programa é software livre. Código idpsonível em https://github.com/chester/SMS-Denuncia"/>
-                    <Property name="timeout" typeID="Pint" value="V-2"/>
-                    <Property name="type" typeID="Ejavax.microedition.lcdui.AlertType" value="EINFO"/>
                 </Component>
             </Component>
             <Component componentID="13" typeID="C#ResourcesCategory">
@@ -403,21 +403,20 @@
         </Component>
     </Document>
     <FlowScene version="1">
-        <Node componentID="107" descriptorID="componentNode107" x="193" y="732"/>
-        <Node componentID="44" descriptorID="componentNode44" x="199" y="111"/>
-        <Node componentID="138" descriptorID="componentNode138" x="669" y="871"/>
-        <Node componentID="72" descriptorID="componentNode72" x="199" y="187"/>
-        <Node componentID="51" descriptorID="componentNode51" x="200" y="263"/>
         <Node componentID="2" descriptorID="componentNode2" x="17" y="15"/>
-        <Node componentID="133" descriptorID="componentNode133" x="65" y="695"/>
-        <Node componentID="137" descriptorID="componentNode137" x="677" y="758"/>
-        <Node componentID="74" descriptorID="componentNode74" x="197" y="585"/>
-        <Node componentID="73" descriptorID="componentNode73" x="195" y="428"/>
         <Node componentID="86" descriptorID="componentNode86" x="418" y="392"/>
-        <Edge componentID="159" descriptorID="eventHandlerEdge159" x0="671" x1="671" x2="670" x3="670" x4="670" x5="74" x6="74" y0="803" y1="803" y2="801" y3="801" y4="6" y5="6" y6="95"/>
-        <Node componentID="160" descriptorID="componentNode160" x="486" y="38"/>
-        <Node componentID="70" descriptorID="componentNode70" x="191" y="506"/>
+        <Node componentID="107" descriptorID="componentNode107" x="193" y="732"/>
         <Node componentID="146" descriptorID="componentNode146" x="420" y="804"/>
+        <Node componentID="133" descriptorID="componentNode133" x="65" y="695"/>
+        <Node componentID="160" descriptorID="componentNode160" x="486" y="38"/>
+        <Node componentID="73" descriptorID="componentNode73" x="195" y="428"/>
+        <Node componentID="138" descriptorID="componentNode138" x="669" y="871"/>
+        <Node componentID="74" descriptorID="componentNode74" x="197" y="585"/>
+        <Node componentID="44" descriptorID="componentNode44" x="199" y="111"/>
+        <Node componentID="72" descriptorID="componentNode72" x="199" y="187"/>
+        <Node componentID="70" descriptorID="componentNode70" x="191" y="506"/>
+        <Node componentID="137" descriptorID="componentNode137" x="677" y="758"/>
+        <Node componentID="51" descriptorID="componentNode51" x="200" y="263"/>
         <Node componentID="65" descriptorID="componentNode65" x="203" y="343"/>
     </FlowScene>
 </VisualDesign>

@@ -99,10 +99,14 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
     private Command exitCommand;
+    private Command aboutCommand;
     private Command backCommand;
     private Command okCommand;
     private Command enviarCommand;
-    private Command aboutCommand;
+    private Alert alertOk;
+    private Alert alertErro;
+    private WaitScreen waitScreenEnviando;
+    private Alert alertSobre;
     private Form formTipo;
     private ChoiceGroup choiceGroupTipo;
     private Form formMeio;
@@ -119,10 +123,6 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
     private TextField textFieldCarro;
     private StringItem stringItem;
     private TextBox textBoxSMS;
-    private Alert alertOk;
-    private Alert alertErro;
-    private WaitScreen waitScreenEnviando;
-    private Alert alertSobre;
     private SimpleCancellableTask enviarSmsTask;
     //</editor-fold>//GEN-END:|fields|0|
 
@@ -759,7 +759,7 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
     public Alert getAlertSobre() {
         if (alertSobre == null) {//GEN-END:|160-getter|0|160-preInit
             // write pre-init user code here
-            alertSobre = new Alert("SMS-Den\u00FAncia", "Este programa \u00E9 software livre. C\u00F3digo idpson\u00EDvel em https://github.com/chester/SMS-Denuncia", null, AlertType.INFO);//GEN-BEGIN:|160-getter|1|160-postInit
+            alertSobre = new Alert("SMS-Den\u00FAncia", "Este programa \u00E9 software livre. C\u00F3digo dispon\u00EDvel em https://github.com/chester/SMS-Denuncia", null, AlertType.INFO);//GEN-BEGIN:|160-getter|1|160-postInit
             alertSobre.setTimeout(Alert.FOREVER);//GEN-END:|160-getter|1|160-postInit
             // write post-init user code here
         }//GEN-BEGIN:|160-getter|2|
