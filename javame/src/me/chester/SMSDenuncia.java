@@ -24,7 +24,6 @@
 
 package me.chester;
 
-import java.io.IOException;
 import javax.microedition.io.Connector;
 import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
@@ -86,12 +85,12 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
     /**
      * Forms na ordem que têm que aparecer
      */
-    private Displayable[] FORMS = {getFormTipo(), getFormDentro(), getFormMeio(), getFormLinha(), getFormEstacao(), getFormSentido(), getFormCarro(), getTextBoxSMS()};
+    private Displayable[] FORMS = {getFormTipo(), getFormDentro(), getFormMeio(), getFormLinha(), getFormEstacao(), getFormSentido(), getFormCarro(), getFormMensagemSMS(), getTextBoxSMS()};
 
     /**
      * Campos de pergunta na ordem em que estão no array FORMS
      */
-    private ChoiceGroup[] CAMPOS = {getChoiceGroupTipo(), getChoiceGroupDentro(), getChoiceGroupMeio(), getChoiceGroupLinha(), getChoiceGroupEstacao(), getChoiceGroupSentido(), null, null};
+    private ChoiceGroup[] CAMPOS = {getChoiceGroupTipo(), getChoiceGroupDentro(), getChoiceGroupMeio(), getChoiceGroupLinha(), getChoiceGroupEstacao(), getChoiceGroupSentido(), null, null, null};
 
 
 
@@ -121,8 +120,9 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
     private ChoiceGroup choiceGroupSentido;
     private Form formCarro;
     private TextField textFieldCarro;
-    private StringItem stringItem;
     private TextBox textBoxSMS;
+    private Form formMensagemSMS;
+    private StringItem stringItem1;
     private SimpleCancellableTask enviarSmsTask;
     //</editor-fold>//GEN-END:|fields|0|
 
@@ -210,7 +210,7 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
                         // write post-action user code here
             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|5|125-preAction
                 // write pre-action user code here
-                doMontaSMS();//GEN-LINE:|7-commandAction|6|125-postAction
+                switchDisplayable(null, getFormMensagemSMS());//GEN-LINE:|7-commandAction|6|125-postAction
                 // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|7|81-preAction
         } else if (displayable == formDentro) {
@@ -236,47 +236,57 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
                 // write pre-action user code here
                 doBack();//GEN-LINE:|7-commandAction|14|58-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|15|91-preAction
+            }//GEN-BEGIN:|7-commandAction|15|172-preAction
+        } else if (displayable == formMensagemSMS) {
+            if (command == backCommand) {//GEN-END:|7-commandAction|15|172-preAction
+                // write pre-action user code here
+                doBack();//GEN-LINE:|7-commandAction|16|172-postAction
+                // write post-action user code here
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|17|169-preAction
+                // write pre-action user code here
+                doMontaSMS();//GEN-LINE:|7-commandAction|18|169-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|19|91-preAction
         } else if (displayable == formSentido) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|15|91-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|19|91-preAction
                 // write pre-action user code here
-                doBack();//GEN-LINE:|7-commandAction|16|91-postAction
+                doBack();//GEN-LINE:|7-commandAction|20|91-postAction
                         // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|17|162-preAction
+            }//GEN-BEGIN:|7-commandAction|21|162-preAction
         } else if (displayable == formTipo) {
-            if (command == aboutCommand) {//GEN-END:|7-commandAction|17|162-preAction
+            if (command == aboutCommand) {//GEN-END:|7-commandAction|21|162-preAction
                 // write pre-action user code here
-                switchDisplayable(getAlertSobre(), getFormTipo());//GEN-LINE:|7-commandAction|18|162-postAction
+                switchDisplayable(getAlertSobre(), getFormTipo());//GEN-LINE:|7-commandAction|22|162-postAction
                 // write post-action user code here
-            } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|19|63-preAction
+            } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|23|63-preAction
                 // write pre-action user code here
-                exitMIDlet();//GEN-LINE:|7-commandAction|20|63-postAction
+                exitMIDlet();//GEN-LINE:|7-commandAction|24|63-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|21|118-preAction
+            }//GEN-BEGIN:|7-commandAction|25|118-preAction
         } else if (displayable == textBoxSMS) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|21|118-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|25|118-preAction
                 // write pre-action user code here
-                doBack();//GEN-LINE:|7-commandAction|22|118-postAction
+                doBack();//GEN-LINE:|7-commandAction|26|118-postAction
                 // write post-action user code here
-            } else if (command == enviarCommand) {//GEN-LINE:|7-commandAction|23|115-preAction
+            } else if (command == enviarCommand) {//GEN-LINE:|7-commandAction|27|115-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getWaitScreenEnviando());//GEN-LINE:|7-commandAction|24|115-postAction
+                switchDisplayable(null, getWaitScreenEnviando());//GEN-LINE:|7-commandAction|28|115-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|25|150-preAction
+            }//GEN-BEGIN:|7-commandAction|29|150-preAction
         } else if (displayable == waitScreenEnviando) {
-            if (command == WaitScreen.FAILURE_COMMAND) {//GEN-END:|7-commandAction|25|150-preAction
+            if (command == WaitScreen.FAILURE_COMMAND) {//GEN-END:|7-commandAction|29|150-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getAlertErro());//GEN-LINE:|7-commandAction|26|150-postAction
+                switchDisplayable(null, getAlertErro());//GEN-LINE:|7-commandAction|30|150-postAction
                 // write post-action user code here
-            } else if (command == WaitScreen.SUCCESS_COMMAND) {//GEN-LINE:|7-commandAction|27|149-preAction
+            } else if (command == WaitScreen.SUCCESS_COMMAND) {//GEN-LINE:|7-commandAction|31|149-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getAlertOk());//GEN-LINE:|7-commandAction|28|149-postAction
+                switchDisplayable(null, getAlertOk());//GEN-LINE:|7-commandAction|32|149-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|29|7-postCommandAction
-        }//GEN-END:|7-commandAction|29|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|33|7-postCommandAction
+        }//GEN-END:|7-commandAction|33|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|30|
-    //</editor-fold>//GEN-END:|7-commandAction|30|
+    }//GEN-BEGIN:|7-commandAction|34|
+    //</editor-fold>//GEN-END:|7-commandAction|34|
 
 
 
@@ -550,7 +560,7 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
     public Form getFormCarro() {
         if (formCarro == null) {//GEN-END:|74-getter|0|74-preInit
             // write pre-init user code here
-            formCarro = new Form("SMS-Den\u00FAncia", new Item[] { getTextFieldCarro(), getStringItem() });//GEN-BEGIN:|74-getter|1|74-postInit
+            formCarro = new Form("SMS-Den\u00FAncia", new Item[] { getTextFieldCarro() });//GEN-BEGIN:|74-getter|1|74-postInit
             formCarro.addCommand(getOkCommand());
             formCarro.addCommand(getBackCommand());
             formCarro.setCommandListener(this);//GEN-END:|74-getter|1|74-postInit
@@ -619,20 +629,7 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
 
 
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem ">//GEN-BEGIN:|112-getter|0|112-preInit
-    /**
-     * Returns an initiliazed instance of stringItem component.
-     * @return the initialized component instance
-     */
-    public StringItem getStringItem() {
-        if (stringItem == null) {//GEN-END:|112-getter|0|112-preInit
-            // write pre-init user code here
-            stringItem = new StringItem("Na pr\u00F3xima tela, descreva o infrator para ajudar os seguran\u00E7as a identific\u00E1-lo.", null);//GEN-LINE:|112-getter|1|112-postInit
-            // write post-init user code here
-        }//GEN-BEGIN:|112-getter|2|
-        return stringItem;
-    }
-    //</editor-fold>//GEN-END:|112-getter|2|
+
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: enviarCommand ">//GEN-BEGIN:|114-getter|0|114-preInit
     /**
@@ -766,6 +763,40 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
         return alertSobre;
     }
     //</editor-fold>//GEN-END:|160-getter|2|
+    //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: formMensagemSMS ">//GEN-BEGIN:|164-getter|0|164-preInit
+    /**
+     * Returns an initiliazed instance of formMensagemSMS component.
+     * @return the initialized component instance
+     */
+    public Form getFormMensagemSMS() {
+        if (formMensagemSMS == null) {//GEN-END:|164-getter|0|164-preInit
+            // write pre-init user code here
+            formMensagemSMS = new Form("form", new Item[] { getStringItem1() });//GEN-BEGIN:|164-getter|1|164-postInit
+            formMensagemSMS.addCommand(getOkCommand());
+            formMensagemSMS.addCommand(getBackCommand());
+            formMensagemSMS.setCommandListener(this);//GEN-END:|164-getter|1|164-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|164-getter|2|
+        return formMensagemSMS;
+    }
+    //</editor-fold>//GEN-END:|164-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem1 ">//GEN-BEGIN:|166-getter|0|166-preInit
+    /**
+     * Returns an initiliazed instance of stringItem1 component.
+     * @return the initialized component instance
+     */
+    public StringItem getStringItem1() {
+        if (stringItem1 == null) {//GEN-END:|166-getter|0|166-preInit
+            // write pre-init user code here
+            stringItem1 = new StringItem("Na pr\u00F3xima tela, descreva o infrator para ajudar os seguran\u00E7as a identific\u00E1-lo.", null);//GEN-LINE:|166-getter|1|166-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|166-getter|2|
+        return stringItem1;
+    }
+    //</editor-fold>//GEN-END:|166-getter|2|
 
 
 
@@ -842,9 +873,10 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
         for (int i = 0; i < FORMS.length; i++) {
             if (FORMS[i].equals(curr) && isSelected(CAMPOS[i])) {
                 // Se a pessoa está fora do trem, pula o form de sentido
+                // e o de carro
                 if (getSelectedIndex(getChoiceGroupDentro()) == DENTRO_ESTACAO
                         && FORMS[i+1].equals(getFormSentido())) {
-                    i++;
+                    i += 2;
                 }
                 setCurrent(FORMS[i+1]);
                 return;
@@ -861,11 +893,16 @@ public class SMSDenuncia extends MIDlet implements CommandListener, Runnable {
             if (FORMS[i].equals(curr)) {
                 clearSelection(CAMPOS[i-1]);
                 setCurrent(FORMS[i-1]);
-                // Se a pessoa está fora do trem, pula o form de sentido
-                if (getSelectedIndex(getChoiceGroupDentro()) == DENTRO_ESTACAO
-                        && FORMS[i-1].equals(getFormSentido())) {
-                    clearSelection(CAMPOS[i-2]);
-                    setCurrent(FORMS[i-2]);
+                // Se voltou pra mensagem, volta pra tela do carro ou do sentido,
+                // dependendo se estamos num trem ou na estação
+                if (FORMS[i-1]==getFormMensagemSMS()) {
+                    if (getSelectedIndex(getChoiceGroupDentro()) == DENTRO_ESTACAO) {
+                        clearSelection(getChoiceGroupEstacao());
+                        setCurrent(getFormEstacao());
+                    } else {
+                        getTextFieldCarro().setString("");
+                        setCurrent(getFormCarro());
+                    }
                 }
             }
         }
