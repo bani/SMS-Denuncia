@@ -1,0 +1,9 @@
+#gitignore
+gen/
+build.xml
+default.properties
+local.properties
+project.properties
+*.cfg
+*~
+

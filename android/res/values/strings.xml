@@ -3,6 +3,7 @@
 	<string name="app_name">SMS-Denúncia</string>
 	<string name="denuncia">Selecione o tipo de denúncia:</string>
 	<string name="local">Informe o local:</string>
+    <string name="infrator">Informe os dados do infrator:</string>
 	<string name="sobre">Este programa é software livre.\n\nCódigo disponível em\nhttps://github.com/bani/SMS-Denuncia</string>
 	<string name="envio">Edite o texto para fornecer uma descrição do infrator e informações adicionais que ajudem os seguranças a localizá-lo antes de enviar.</string>
 	<string name="dVandalismo">Vandalismo</string>
@@ -212,4 +213,22 @@
 		<item>Aracaré</item>
 		<item>Calmon Viana</item>
 	</string-array>
+    <string-array name="tons_de_pele">
+        <item>Branco</item>
+        <item>Pardo</item>
+        <item>Negro</item>
+        <item>Amarelo</item>
+        <item>Vermelho</item>
+    </string-array>
+    <string-array name="cores_de_roupa">
+        <item>Branco</item>
+        <item>Amarelo</item>
+        <item>Verde</item>
+        <item>Preto</item>
+        <item>Vermelho</item>
+        <item>Vinho</item>
+        <item>Azul</item>
+        <item>Rosa</item>
+        <item>Lilás</item>
+    </string-array>
 </resources>
