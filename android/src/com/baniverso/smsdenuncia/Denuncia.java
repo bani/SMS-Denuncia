@@ -30,6 +30,8 @@ public class Denuncia extends Activity {
 	private TextView sentido;
 	private EditText vagao;
 	private String denuncia;
+    private TextView tomDePeleInfrator;
+    private TextView corRoupaInfrator;
 	
 	private static final String CPTM = "CPTM";
 	private static final String METRO = "Metrô";
@@ -136,12 +138,12 @@ public class Denuncia extends Activity {
 		dentro = (CheckBox) findViewById(R.id.dentro2);
 		sentido = (TextView) findViewById(R.id.sentido2);
 		vagao = (EditText) findViewById(R.id.vagao2);
-		
+
 		//Botao de send para o teclado do numero do carro
 		TextView.OnEditorActionListener sendListener = new TextView.OnEditorActionListener(){
 			public boolean onEditorAction(TextView text, int actionId, KeyEvent event) {
 				if(actionId == EditorInfo.IME_ACTION_SEND){
-					criaDenuncia();
+                    mostraDadosInfrator();
 				}
 				return true;
 			}
@@ -173,6 +175,25 @@ public class Denuncia extends Activity {
 		});
 	}
 
+    private void showTomDePeleInfrator() {
+        final Button tomDePeleInfrator = (Button) findViewById(R.id.tomDePeleInfrator1);
+        tomDePeleInfrator.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                chooseTomDePeleInfrator();
+            }
+        });
+    }
+
+    private void showCorRoupaInfrator() {
+        final Button corRoupaInfrator = (Button) findViewById(R.id.corRoupaInfrator1);
+        corRoupaInfrator.setVisibility(View.VISIBLE);
+        corRoupaInfrator.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                chooseCorRoupaInfrator();
+            }                  
+        });
+    }
+
 	private void chooseMeioTransporte() {
 		final CharSequence[] items = { CPTM, METRO };
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -187,6 +208,34 @@ public class Denuncia extends Activity {
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
+
+    private void chooseTomDePeleInfrator() {
+        final CharSequence[] tonsDePele = getResources().getStringArray(R.array.tons_de_pele);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Tom de Pele do Infrator");
+        builder.setItems(tonsDePele, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                tomDePeleInfrator.setText(tonsDePele[item]);
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+        showCorRoupaInfrator();
+    }
+
+    private void chooseCorRoupaInfrator() {
+        final CharSequence[] coresRoupa = getResources().getStringArray(R.array.cores_de_roupa);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Cor Predominante da Roupa");
+        builder.setItems(coresRoupa, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                corRoupaInfrator.setText(coresRoupa[item]);
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+        showEnviar();
+    }
 
 	private void showLinha() {
 		final Button linha = (Button) findViewById(R.id.linha1);
@@ -256,7 +305,7 @@ public class Denuncia extends Activity {
 		final Button continuar = (Button) findViewById(R.id.continuar);
 		continuar.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				criaDenuncia();
+                mostraDadosInfrator();
 			}
 		});
 		builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -323,12 +372,36 @@ public class Denuncia extends Activity {
 		}
 		denuncia +=  estacao.getText() + ".";
 		if(vagao.getText().length()>0) {
-			denuncia += " Carro " + vagao.getText() + ".";
-		
+			denuncia += " Carro " + vagao.getText() + ".";		
 		}
+        if (tomDePeleInfrator.getText().length() > 0) {
+            denuncia += "Tom da Pele: " + tomDePeleInfrator.getText() + ".";
+        }
+        if (corRoupaInfrator.getText().length() > 0) {
+            denuncia += "Cor Predominante da Roupa: " + corRoupaInfrator.getText() + ".";
+        }
 
 		confirmar();
 	}
+
+    private void mostraDadosInfrator() {
+        setContentView(R.layout.infrator);
+
+        tomDePeleInfrator = (TextView) findViewById(R.id.tomDePeleInfrator2);
+        corRoupaInfrator = (TextView) findViewById(R.id.corRoupaInfrator2);
+
+        showTomDePeleInfrator();
+    }
+
+    private void showEnviar() {
+        final Button enviar = (Button) findViewById(R.id.enviar);
+        enviar.setVisibility(View.VISIBLE);
+        enviar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                criaDenuncia();
+            }
+        });
+    }
 	
 	private void confirmar() {
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
