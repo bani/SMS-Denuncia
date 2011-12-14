@@ -175,25 +175,6 @@ public class Denuncia extends Activity {
 		});
 	}
 
-    private void showTomDePeleInfrator() {
-        final Button tomDePeleInfrator = (Button) findViewById(R.id.tomDePeleInfrator1);
-        tomDePeleInfrator.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                chooseTomDePeleInfrator();
-            }
-        });
-    }
-
-    private void showCorRoupaInfrator() {
-        final Button corRoupaInfrator = (Button) findViewById(R.id.corRoupaInfrator1);
-        corRoupaInfrator.setVisibility(View.VISIBLE);
-        corRoupaInfrator.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                chooseCorRoupaInfrator();
-            }                  
-        });
-    }
-
 	private void chooseMeioTransporte() {
 		final CharSequence[] items = { CPTM, METRO };
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -208,34 +189,6 @@ public class Denuncia extends Activity {
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
-
-    private void chooseTomDePeleInfrator() {
-        final CharSequence[] tonsDePele = getResources().getStringArray(R.array.tons_de_pele);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Tom de Pele do Infrator");
-        builder.setItems(tonsDePele, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int item) {
-                tomDePeleInfrator.setText(tonsDePele[item]);
-            }
-        });
-        AlertDialog alert = builder.create();
-        alert.show();
-        showCorRoupaInfrator();
-    }
-
-    private void chooseCorRoupaInfrator() {
-        final CharSequence[] coresRoupa = getResources().getStringArray(R.array.cores_de_roupa);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Cor Predominante da Roupa");
-        builder.setItems(coresRoupa, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int item) {
-                corRoupaInfrator.setText(coresRoupa[item]);
-            }
-        });
-        AlertDialog alert = builder.create();
-        alert.show();
-        showEnviar();
-    }
 
 	private void showLinha() {
 		final Button linha = (Button) findViewById(R.id.linha1);
@@ -361,6 +314,53 @@ public class Denuncia extends Activity {
 		vagao.setVisibility(View.INVISIBLE);
 		this.vagao.setVisibility(View.INVISIBLE);
 	}
+
+    private void showTomDePeleInfrator() {
+        final Button tomDePeleInfrator = (Button) findViewById(R.id.tomDePeleInfrator1);
+        tomDePeleInfrator.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                chooseTomDePeleInfrator();
+            }
+        });
+    }
+
+    private void chooseTomDePeleInfrator() {
+        final CharSequence[] tonsDePele = getResources().getStringArray(R.array.tons_de_pele);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Tom de Pele do Infrator");
+        builder.setItems(tonsDePele, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                tomDePeleInfrator.setText(tonsDePele[item]);
+                showCorRoupaInfrator();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void showCorRoupaInfrator() {
+        final Button corRoupaInfrator = (Button) findViewById(R.id.corRoupaInfrator1);
+        corRoupaInfrator.setVisibility(View.VISIBLE);
+        corRoupaInfrator.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                chooseCorRoupaInfrator();
+            }                  
+        });
+    }
+
+    private void chooseCorRoupaInfrator() {
+        final CharSequence[] coresRoupa = getResources().getStringArray(R.array.cores_de_roupa);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Cor Principal da Roupa");
+        builder.setItems(coresRoupa, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                corRoupaInfrator.setText(coresRoupa[item]);
+                showEnviar();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 	
 	private void criaDenuncia() {
 		denuncia = tipoDenuncia + " na linha " + linha.getText() + ". ";

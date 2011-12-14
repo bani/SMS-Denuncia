@@ -20,7 +20,7 @@
     android:layout_width="150px"
     android:layout_height="wrap_content"
     android:textSize="18sp"
-    android:text="Tom de Pele"/>
+    android:text="Pele"/>
 <TextView android:id="@+id/tomDePeleInfrator2"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
     android:layout_width="150px"
     android:layout_height="wrap_content"
     android:textSize="18sp"
-    android:text="Cor da Roupa"
+    android:text="Roupa"
     android:visibility="invisible"/>
 <TextView android:id="@+id/corRoupaInfrator2"
     android:layout_width="fill_parent"
@@ -42,17 +42,12 @@
     android:textSize="18sp"
     android:text=""/>
 </TableRow>
-<TableRow>
-<TextView android:id="@+id/space2"
-    android:visibility="invisible" />
 <Button android:id="@+id/enviar"
     android:layout_marginTop="5px"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textSize="18sp"
-    android:text="Enviar"
-    android:visibility="invisible" />
-</TableRow>
+    android:text="Enviar" />
 </TableLayout>
 </LinearLayout>
 </ScrollView>
