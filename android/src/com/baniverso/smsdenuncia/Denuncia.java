@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.CheckBox;
 
 public class Denuncia extends Activity {
 	private static final Map<String,Integer> LINHAS = new HashMap<String,Integer>();
@@ -30,8 +31,14 @@ public class Denuncia extends Activity {
 	private TextView sentido;
 	private EditText vagao;
 	private String denuncia;
+	
+	// Dados do infrator
     private TextView tomDePeleInfrator;
     private TextView corRoupaInfrator;
+    private CheckBox usaOculos;
+    private CheckBox usaBone;
+    private CheckBox usaBarba;
+    private CheckBox usaBigode;
 	
 	private static final String CPTM = "CPTM";
 	private static final String METRO = "Metrô";
@@ -143,7 +150,7 @@ public class Denuncia extends Activity {
 		TextView.OnEditorActionListener sendListener = new TextView.OnEditorActionListener(){
 			public boolean onEditorAction(TextView text, int actionId, KeyEvent event) {
 				if(actionId == EditorInfo.IME_ACTION_SEND){
-                    mostraDadosInfrator();
+                    showViewDadosInfrator();
 				}
 				return true;
 			}
@@ -258,7 +265,7 @@ public class Denuncia extends Activity {
 		final Button continuar = (Button) findViewById(R.id.continuar);
 		continuar.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-                mostraDadosInfrator();
+                showViewDadosInfrator();
 			}
 		});
 		builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -355,6 +362,7 @@ public class Denuncia extends Activity {
         builder.setItems(coresRoupa, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
                 corRoupaInfrator.setText(coresRoupa[item]);
+                showCheckBoxesInfrator(true);
                 showEnviar();
             }
         });
@@ -372,7 +380,7 @@ public class Denuncia extends Activity {
 		}
 		denuncia +=  estacao.getText() + ".";
 		if(vagao.getText().length()>0) {
-			denuncia += " Carro " + vagao.getText() + ".";		
+			denuncia += " Carro " + vagao.getText() + ". ";		
 		}
         if (tomDePeleInfrator.getText().length() > 0) {
             denuncia += "Tom da Pele: " + tomDePeleInfrator.getText() + ".";
@@ -380,17 +388,37 @@ public class Denuncia extends Activity {
         if (corRoupaInfrator.getText().length() > 0) {
             denuncia += "Cor Predominante da Roupa: " + corRoupaInfrator.getText() + ".";
         }
+        
+        if (usaOculos.isChecked()) denuncia += "Usa óculos. ";
+        if (usaBone.isChecked()) denuncia += "Usa boné. ";
+        if (usaBarba.isChecked()) denuncia += "Usa barba. ";
+        if (usaBigode.isChecked()) denuncia += "Usa bigode. ";
 
 		confirmar();
 	}
 
-    private void mostraDadosInfrator() {
+    private void showViewDadosInfrator() {
         setContentView(R.layout.infrator);
 
         tomDePeleInfrator = (TextView) findViewById(R.id.tomDePeleInfrator2);
         corRoupaInfrator = (TextView) findViewById(R.id.corRoupaInfrator2);
+        usaOculos = (CheckBox) findViewById(R.id.usaOculos);
+        usaBone = (CheckBox) findViewById(R.id.usaBone);
+        usaBarba = (CheckBox) findViewById(R.id.usaBarba);
+        usaBigode = (CheckBox) findViewById(R.id.usaBigode);
+        
+        corRoupaInfrator.setVisibility(View.INVISIBLE);
+        showCheckBoxesInfrator(false);
 
         showTomDePeleInfrator();
+    }
+    
+    private void showCheckBoxesInfrator(boolean show) {
+    	int visValue = (show) ? View.VISIBLE : View.INVISIBLE;
+    	usaOculos.setVisibility(visValue);
+        usaBone.setVisibility(visValue);
+        usaBarba.setVisibility(visValue);
+        usaBigode.setVisibility(visValue);
     }
 
     private void showEnviar() {

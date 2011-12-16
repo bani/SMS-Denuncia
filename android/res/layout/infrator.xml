@@ -33,14 +33,33 @@
     android:layout_width="150px"
     android:layout_height="wrap_content"
     android:textSize="18sp"
-    android:text="Roupa"
-    android:visibility="invisible"/>
+    android:text="Roupa"/>
 <TextView android:id="@+id/corRoupaInfrator2"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:textStyle="bold"
     android:textSize="18sp"
     android:text=""/>
+</TableRow>
+<TableRow>
+    <CheckBox 
+        android:id="@+id/usaOculos" 
+        android:text="Usa Óculos?"/>
+</TableRow>
+<TableRow>
+    <CheckBox 
+        android:id="@+id/usaBone"
+        android:text="Usa Boné?"/>
+</TableRow>
+<TableRow>
+    <CheckBox
+        android:id="@+id/usaBigode"
+        android:text="Usa Bigode?"/>
+</TableRow>
+<TableRow>
+    <CheckBox
+        android:id="@+id/usaBarba"
+        android:text="Usa Barba?"/>
 </TableRow>
 <Button android:id="@+id/enviar"
     android:layout_marginTop="5px"
