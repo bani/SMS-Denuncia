@@ -259,23 +259,25 @@ public class Denuncia extends Activity {
 
 	private void chooseEstacao() {
 		final String linha = this.linha.getText().toString();
-		final CharSequence[] items = getResources().getStringArray(LINHAS.get(linha));
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Estação");
-		final Button continuar = (Button) findViewById(R.id.continuar);
-		continuar.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-                showViewDadosInfrator();
-			}
-		});
-		builder.setItems(items, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int item) {
-				estacao.setText(items[item]);
-				continuar.setVisibility(View.VISIBLE);
-			}
-		});
-		AlertDialog alert = builder.create();
-		alert.show();
+		if (linha != null && !linha.equals("")) {
+			final CharSequence[] items = getResources().getStringArray(LINHAS.get(linha));
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("Estação");
+			final Button continuar = (Button) findViewById(R.id.continuar);
+			continuar.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+	                showViewDadosInfrator();
+				}
+			});
+			builder.setItems(items, new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int item) {
+					estacao.setText(items[item]);
+					continuar.setVisibility(View.VISIBLE);
+				}
+			});
+			AlertDialog alert = builder.create();
+			alert.show();
+		}
 	}
 	
 	private void showSentido() {
