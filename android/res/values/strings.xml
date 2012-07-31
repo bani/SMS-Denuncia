@@ -4,14 +4,14 @@
 	<string name="denuncia">Selecione o tipo de denúncia:</string>
 	<string name="local">Informe o local:</string>
 	<string name="sobre">Este programa é software livre.\n\nCódigo disponível em\nhttps://github.com/bani/SMS-Denuncia</string>
-	<string name="envio">Edite o texto para fornecer uma descrição do infrator e informações adicionais que ajudem os seguranças a localizá-lo antes de enviar.</string>
+	<string name="envio">ATENÇÃO: Edite o texto para fornecer uma descrição do infrator e informações adicionais que ajudem os seguranças a localizá-lo antes de enviar.</string>
 	<string name="dVandalismo">Vandalismo</string>
 	<string name="dComercio">Comércio Irregular</string>
 	<string name="dDelito">Delito</string>
 	<string name="dSom">Som Alto</string>
 	<string name="dOutra">Outras</string>
-	<string name="telefone_trem">+551171504949</string>
-	<string name="telefone_metro">+551173332252</string>
+	<string name="telefone_trem">+5511971504949</string>
+	<string name="telefone_metro">+5511973332252</string>
 	<string-array name="linhas_metro">
 		<item>1-Azul</item>
 		<item>2-Verde</item>

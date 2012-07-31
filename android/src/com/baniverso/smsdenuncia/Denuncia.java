@@ -20,6 +20,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.flurry.android.FlurryAgent;
+
 public class Denuncia extends Activity {
 	private static final Map<String,Integer> LINHAS = new HashMap<String,Integer>();
 	private String tipoDenuncia;
@@ -32,14 +34,14 @@ public class Denuncia extends Activity {
 	private String denuncia;
 	
 	private static final String CPTM = "CPTM";
-	private static final String METRO = "Metr√¥";
+	private static final String METRO = "Metrô";
 	
 	static {
 		LINHAS.put("1-Azul", R.array.linha1);
 		LINHAS.put("2-Verde", R.array.linha2);
 		LINHAS.put("3-Vermelha", R.array.linha3);
 		LINHAS.put("4-Amarela", R.array.linha4);
-		LINHAS.put("5-Lil√°s", R.array.linha5);
+		LINHAS.put("5-Lilás", R.array.linha5);
 		
 		LINHAS.put("7-Rubi", R.array.linha7);
 		LINHAS.put("8-Diamante", R.array.linha8);
@@ -47,6 +49,18 @@ public class Denuncia extends Activity {
 		LINHAS.put("10-Turquesa", R.array.linha10);
 		LINHAS.put("11-Coral", R.array.linha11);
 		LINHAS.put("12-Safira", R.array.linha12);
+	}
+	
+	@Override
+	public void onStart() {
+		super.onStart();
+		FlurryAgent.onStartSession(this, "JCKN68TGU4VZ28CTJ7KT");
+	}
+	
+	@Override
+	public void onStop() {
+	   super.onStop();
+	   FlurryAgent.onEndSession(this);
 	}
 	
 	@Override
@@ -62,7 +76,7 @@ public class Denuncia extends Activity {
 		final Button denunciaComercio = (Button) findViewById(R.id.denunciaComercio);
 		denunciaComercio.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				gravaTipoDenuncia("Com√©rcio irregular");
+				gravaTipoDenuncia("Comércio irregular");
 			}
 		});
 
@@ -90,7 +104,7 @@ public class Denuncia extends Activity {
 		final Button denunciaOutros = (Button) findViewById(R.id.denunciaOutros);
 		denunciaOutros.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				gravaTipoDenuncia("Den√∫ncia");
+				gravaTipoDenuncia("Denúncia");
 			}
 		});
 
@@ -116,8 +130,10 @@ public class Denuncia extends Activity {
 	    	       });
 	    	AlertDialog alert = builder.create();
 	    	alert.show();
+	    	FlurryAgent.onEvent("menu-sobre", null);
 	        return true;
 	    case R.id.quit:
+	    	FlurryAgent.onEvent("menu-sair", null);
 	    	finish();
 	        return true;
 	    default:
@@ -127,6 +143,9 @@ public class Denuncia extends Activity {
 
 	private void gravaTipoDenuncia(String tipo) {
 		this.tipoDenuncia = tipo;
+		Map<String, String> flurryParams = new HashMap<String, String>();
+		flurryParams.put("tipo", tipo);
+		FlurryAgent.onEvent("tipo", flurryParams);
 		setContentView(R.layout.local);
 		// inicializa campos de informacao do local
 		meioTransporte = (TextView) findViewById(R.id.meioTransporte2);
@@ -180,6 +199,9 @@ public class Denuncia extends Activity {
 		builder.setItems(items, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int item) {
 				meioTransporte.setText(items[item]);
+				Map<String, String> flurryParams = new HashMap<String, String>();
+				flurryParams.put("meio", items[item].toString());
+				FlurryAgent.onEvent("meio", flurryParams);
 				showLinha();
 				limpaLocal(1);
 			}
@@ -208,6 +230,9 @@ public class Denuncia extends Activity {
 		builder.setItems(items, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int item) {
 				linha.setText(items[item]);
+				Map<String, String> flurryParams = new HashMap<String, String>();
+				flurryParams.put("linha", items[item].toString());
+				FlurryAgent.onEvent("linha", flurryParams);
 				showDentro();
 				showEstacao();
 				limpaLocal(2);
@@ -225,11 +250,14 @@ public class Denuncia extends Activity {
 			final Button estacao1 = (Button) findViewById(R.id.estacao1);
 			public void onClick(View v) {
 				if (dentro.isChecked()) {
-		             estacao1.setText("Pr√≥x. Esta√ß√£o");
+		             estacao1.setText("Próx. Estação");
+		             Map<String, String> flurryParams = new HashMap<String, String>();
+					 flurryParams.put("dentro", meioTransporte.getText().toString());
+					 FlurryAgent.onEvent("dentro", flurryParams);
 		             showSentido();
 		             showVagao();
 		         } else {
-		        	 estacao1.setText("Esta√ß√£o");
+		        	 estacao1.setText("Estação");
 		        	 hideSentido();
 		        	 hideVagao();
 		         }
@@ -252,7 +280,7 @@ public class Denuncia extends Activity {
 		final String linha = this.linha.getText().toString();
 		final CharSequence[] items = getResources().getStringArray(LINHAS.get(linha));
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Esta√ß√£o");
+		builder.setTitle("Estação");
 		final Button continuar = (Button) findViewById(R.id.continuar);
 		continuar.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -262,6 +290,9 @@ public class Denuncia extends Activity {
 		builder.setItems(items, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int item) {
 				estacao.setText(items[item]);
+				Map<String, String> flurryParams = new HashMap<String, String>();
+				flurryParams.put("estacao", items[item].toString());
+				FlurryAgent.onEvent("estacao", flurryParams);
 				continuar.setVisibility(View.VISIBLE);
 			}
 		});
@@ -295,6 +326,9 @@ public class Denuncia extends Activity {
 		builder.setItems(items, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int item) {
 				sentido.setText(items[item]);
+				Map<String, String> flurryParams = new HashMap<String, String>();
+				flurryParams.put("sentido", items[item].toString());
+				FlurryAgent.onEvent("sentido", flurryParams);
 			}
 		});
 		AlertDialog alert = builder.create();
@@ -317,15 +351,26 @@ public class Denuncia extends Activity {
 		denuncia = tipoDenuncia + " na linha " + linha.getText() + ". ";
 		if(dentro.isChecked()) {
 			denuncia += "Trem sentido " + sentido.getText();
-			denuncia += " pr√≥x. da esta√ß√£o ";
+			denuncia += " próx. da estação ";
 		} else {
-			denuncia += "Esta√ß√£o ";
+			denuncia += "Estação ";
 		}
 		denuncia +=  estacao.getText() + ".";
 		if(vagao.getText().length()>0) {
 			denuncia += " Carro " + vagao.getText() + ".";
 		
 		}
+		Map<String, String> flurryParams = new HashMap<String, String>();
+		flurryParams.put("tipo", tipoDenuncia);
+		flurryParams.put("meio", meioTransporte.getText().toString());
+		flurryParams.put("linha", linha.getText().toString());
+		flurryParams.put("estacao", estacao.getText().toString());
+		if(dentro.isChecked()) {
+			flurryParams.put("dentro", meioTransporte.getText().toString());
+			flurryParams.put("sentido", sentido.getText().toString());
+		}
+		flurryParams.put("vagao", vagao.getText().toString());
+		FlurryAgent.onEvent("denuncia", flurryParams);
 
 		confirmar();
 	}
@@ -335,6 +380,7 @@ public class Denuncia extends Activity {
     	builder.setMessage(this.getString(R.string.envio))
     	       .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
     	           public void onClick(DialogInterface dialog, int id) {
+    	        	   FlurryAgent.onEvent("enviar", null);
     	        	   enviar(false);
     	           }
     	       });
