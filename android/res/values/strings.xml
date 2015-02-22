@@ -92,6 +92,7 @@
 		<item>Butantã</item>
 		<item>Pinheiros</item>
 		<item>Faria Lima</item>
+		<item>Fradique Coutinho</item>
 		<item>Paulista</item>
 		<item>República</item>
 		<item>Luz</item>
@@ -113,6 +114,7 @@
 		<item>Pirituba</item>
 		<item>Vila Clarice</item>
 		<item>Jaraguá</item>
+		<item>Vila Aurora</item>
 		<item>Perus</item>
 		<item>Caieiras</item>
 		<item>Franco da Rocha</item>
@@ -144,6 +146,8 @@
 		<item>Sagrado Coração</item>
 		<item>Engº. Cardoso</item>
 		<item>Itapevi</item>
+		<item>Santa Rita</item>
+		<item>Amador Bueno</item>
 	</string-array>
 	<string-array name="linha9">
 		<item>Osasco</item>
@@ -166,7 +170,6 @@
 		<item>Grajaú</item>
 	</string-array>
 	<string-array name="linha10">
-		<item>Luz</item>
 		<item>Brás</item>
 		<item>Mooca</item>
 		<item>Ipiranga</item>
@@ -202,14 +205,14 @@
 	<string-array name="linha12">
 		<item>Brás</item>
 		<item>Tatuapé</item>
-		<item>Engº. Goulart</item>
+		<item>Eng. Goulart</item>
 		<item>USP-Leste</item>
 		<item>Comendador Ermelino</item>
 		<item>São Miguel Paulista</item>
 		<item>Jard. Helena-Vila Mara</item>
 		<item>Itaím Paulista</item>
 		<item>Jardim Romano</item>
-		<item>Engº. Manoel Feio</item>
+		<item>Eng. Manoel Feio</item>
 		<item>Itaquaquecetuba</item>
 		<item>Aracaré</item>
 		<item>Calmon Viana</item>

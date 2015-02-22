@@ -34,14 +34,14 @@ public class Denuncia extends Activity {
 	private String denuncia;
 	
 	private static final String CPTM = "CPTM";
-	private static final String METRO = "Metrô";
+	private static final String METRO = "Metr√¥";
 	
 	static {
 		LINHAS.put("1-Azul", R.array.linha1);
 		LINHAS.put("2-Verde", R.array.linha2);
 		LINHAS.put("3-Vermelha", R.array.linha3);
 		LINHAS.put("4-Amarela", R.array.linha4);
-		LINHAS.put("5-Lilás", R.array.linha5);
+		LINHAS.put("5-Lil√°s", R.array.linha5);
 		
 		LINHAS.put("7-Rubi", R.array.linha7);
 		LINHAS.put("8-Diamante", R.array.linha8);
@@ -76,7 +76,7 @@ public class Denuncia extends Activity {
 		final Button denunciaComercio = (Button) findViewById(R.id.denunciaComercio);
 		denunciaComercio.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				gravaTipoDenuncia("Comércio irregular");
+				gravaTipoDenuncia("Com√©rcio irregular");
 			}
 		});
 
@@ -104,7 +104,7 @@ public class Denuncia extends Activity {
 		final Button denunciaOutros = (Button) findViewById(R.id.denunciaOutros);
 		denunciaOutros.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				gravaTipoDenuncia("Denúncia");
+				gravaTipoDenuncia("Den√∫ncia");
 			}
 		});
 
@@ -250,14 +250,14 @@ public class Denuncia extends Activity {
 			final Button estacao1 = (Button) findViewById(R.id.estacao1);
 			public void onClick(View v) {
 				if (dentro.isChecked()) {
-		             estacao1.setText("Próx. Estação");
+		             estacao1.setText("Pr√≥x. Esta√ß√£o");
 		             Map<String, String> flurryParams = new HashMap<String, String>();
 					 flurryParams.put("dentro", meioTransporte.getText().toString());
 					 FlurryAgent.onEvent("dentro", flurryParams);
 		             showSentido();
 		             showVagao();
 		         } else {
-		        	 estacao1.setText("Estação");
+		        	 estacao1.setText("Esta√ß√£o");
 		        	 hideSentido();
 		        	 hideVagao();
 		         }
@@ -280,7 +280,7 @@ public class Denuncia extends Activity {
 		final String linha = this.linha.getText().toString();
 		final CharSequence[] items = getResources().getStringArray(LINHAS.get(linha));
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Estação");
+		builder.setTitle("Esta√ß√£o");
 		final Button continuar = (Button) findViewById(R.id.continuar);
 		continuar.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -351,9 +351,9 @@ public class Denuncia extends Activity {
 		denuncia = tipoDenuncia + " na linha " + linha.getText() + ". ";
 		if(dentro.isChecked()) {
 			denuncia += "Trem sentido " + sentido.getText();
-			denuncia += " próx. da estação ";
+			denuncia += " pr√≥x. da esta√ß√£o ";
 		} else {
-			denuncia += "Estação ";
+			denuncia += "Esta√ß√£o ";
 		}
 		denuncia +=  estacao.getText() + ".";
 		if(vagao.getText().length()>0) {

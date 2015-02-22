@@ -1,4 +1,7 @@
 android/.project
+android/project.properties
 android/.classpath
 android/bin*
+android/.settings/
+android/gen*
 .DS_Store
